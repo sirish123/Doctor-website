@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useHistory } from 'react-router-dom';
-
+import DatePicker from 'react-date-picker';
 import Input from '../shared/components/FormElements/Input'
 import Button from '../shared/components/FormElements/Button';
 import {VALIDATOR_REQUIRE,
@@ -9,30 +9,29 @@ import {VALIDATOR_REQUIRE,
 import { useForm } from '../shared/hooks/form-hook';
 import { useHttpClient } from '../shared/hooks/http-hook';
 
-import './PatientForm.css';
+import './BookingForm.css';
 
-const NewPatient = () => {
- 
+const Booking = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
-      number: {
+      uniqueid: {
         value: '',
         isValid: false
       },
-      name: {
+      paymentamount: {
         value: '',
         isValid: false
       },
-      address: {
+      diagnosis: {
         value: '',
         isValid: false
       },
-      gender: {
+      date: {
         value: '',
         isValid: false
       },
-      dateofbirth: {
+      time: {
         value: '',
         isValid: false
       }
@@ -46,14 +45,14 @@ const NewPatient = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        'http://localhost:5000/api/patient',
+        'http://localhost:5000/api/booking/new',
         'POST',
         JSON.stringify({
-          number: formState.inputs.number.value,
-          name: formState.inputs.name.value,
-          address: formState.inputs.address.value,
-          gender:formState.inputs.gender.value,
-          dateofbirth:formState.inputs.dateofbirth.value
+          uniqueid: formState.inputs.uniqueid.value,
+          paymentamount: formState.inputs.paymentamount.value,
+          diagnosis: formState.inputs.diagnosis.value,
+          date:formState.inputs.date.value,
+          time:formState.inputs.time.value
         }),
         { 'Content-Type': 'application/json' }
       );
@@ -64,54 +63,55 @@ const NewPatient = () => {
   return (
     <React.Fragment>
     
-      <form className="patient-form" onSubmit={placeSubmitHandler}>
+      <form className="booking-form" onSubmit={placeSubmitHandler}>
         <Input
-          id="number"
+          id="uniqueid"
           element="input"
           type="text"
-          label="Number"
+          label="Phone Number"
           validators={[VALIDATOR_REQUIRE(),VALIDATOR_MINLENGTH(10)]}
-          errorText="Please enter a valid Number."
+          errorText="Please enter a valid uniqueid."
           onInput={inputHandler}
         />
         <Input
-          id="name"
+          id="paymentamount"
           element="input"
-          label="Name"
+          label="Payment Amount"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a Name"
+          errorText="Please enter a paymentamount"
           onInput={inputHandler}
         />
         <Input
-          id="address"
+          id="diagnosis"
           element="textarea"
-          label="Address"
+          label="Diagnosis"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid Address."
+          errorText="Please enter a valid diagnosis."
           onInput={inputHandler}
         />
-         <Input
-          id="gender"
+        <Input
+          id="date"
           element="input"
-          label="Gender"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter the Gender."
-          onInput={inputHandler}
-        />
-         <Input
-          id="dateofbirth"
-          element="input"
-          label="DateOfBirth"
+          label="Date"
           validators={[VALIDATOR_REQUIRE(),VALIDATOR_DATEOFBIRTH()]}
-          errorText="Please enter the DateOfBirth."
+          errorText="Please enter a valid date."
+          onInput={inputHandler}
+        />
+         
+         <Input
+          id="time"
+          element="input"
+          label="Time"
+          validators={[VALIDATOR_REQUIRE(),VALIDATOR_DATEOFBIRTH()]}
+          errorText="Please enter the time."
           onInput={inputHandler}
         />
         <Button type="submit" disabled={!formState.isValid}>
-          ADD PATIENT
+          ADD booking
         </Button>
       </form>
     </React.Fragment>
   );
 };
 
-export default NewPatient;
+export default Booking;

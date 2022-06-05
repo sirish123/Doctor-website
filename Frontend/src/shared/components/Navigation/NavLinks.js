@@ -6,13 +6,13 @@ const NavLinks = () =>{
   return (
     <ul className='nav-links'>
     <li>
-        <NavLink to='/' exact>APPOINTMENT</NavLink>
+        <NavLink to='/' exact>SEARCH</NavLink>
     </li>
     <li>
         <NavLink to='/newPatient'>NEW PATIENT</NavLink>
     </li>
     <li>
-        <NavLink to='/search'>SEARCH</NavLink>
+        <NavLink to='/booking'>BOOK</NavLink>
     </li>
     <li>
         <NavLink to='/auth'>PASSWORD CHANGE</NavLink>

@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
+import Button from "../../shared/components/FormElements/Button";
 
-import Card from '../../shared/components/UIElements/Card';
-import './PatientItem.css';
+import Card from "../../shared/components/UIElements/Card";
+import "./PatientItem.css";
 
-const PatientItem = props => {
+const PatientItem = (props) => {
   return (
-    <li className="patient-item">
-      <Card className="patient-item__content">
+    <li className="patient-item ">
+      <Card className="patient-item__content center">
         <div className="patient-item__info">
-          <h3>{props.name}</h3>
-          <h3>{props.number}</h3>
-          <h3>{props.address}</h3>
+          <h2>{props.name}{"  "}{props.number}{"  "}{props.dateofbirth}</h2>
         </div>
-        
+        <Button to={`/booking`}>Book</Button>
       </Card>
     </li>
   );

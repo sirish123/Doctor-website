@@ -11,6 +11,7 @@ import {
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Patient from './patients/Patient';
 import NewPatient from './patients/NewPatient';
+import Booking from './bookings/Booking';
 
 
 const App = () => {
@@ -24,6 +25,9 @@ const App = () => {
         </Route>
         <Route path="/newPatient" exact>
          <NewPatient />
+        </Route>
+        <Route path="/booking" exact>
+        <Booking />
         </Route>
         <Redirect to="/" />
       </Switch>

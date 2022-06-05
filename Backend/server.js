@@ -1,43 +1,52 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-
-const patientRoutes = require('./routes/patient-routes');
-const HttpError = require('./models/http-error');
+const patientRoutes = require("./routes/patient-routes");
+const bookingRoutes = require("./routes/booking-routes");
+const HttpError = require("./models/http-error");
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.use((req,res,next) =>{
-  res.setHeader('Access-Control-Allow-Origin','*');
-  res.setHeader('Access-Control-Allow-Headers',
-  'Origin , X-Requested-With, Content-Type, Accept, Authorization'
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin , X-Requested-With, Content-Type, Accept, Authorization"
   );
-  res.setHeader('Access-Control-Allow-Methods' , 'GET,POST,PATCH,DELETE');
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE");
   next();
-})
-app.use('/api/patient', patientRoutes); // => /api/patient...
+});
+app.use("/api/patient", patientRoutes);
+app.use("/api/booking", bookingRoutes);
+
 
 app.use((req, res, next) => {
-  const error = new HttpError('Could not find this route.', 404);
+  const error = new HttpError("Could not find this route.", 404);
   throw error;
 });
 
-app.use((error, req, res, next) => {
-    if (res.headerSent) {
-      return next(error);
-    }
-    res.status(error.code || 500)
-    res.json({message: error.message || 'An unknown error occurred!'});
-  });
 
-  mongoose
-  .connect('mongodb+srv://sirish:sirish123@cluster0.fzqyl6v.mongodb.net/DoctorWebApp?retryWrites=true&w=majority')
+
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || "An unknown error occurred!" });
+});
+
+
+
+mongoose
+  .connect(
+    "mongodb+srv://sirish:sirish123@cluster0.fzqyl6v.mongodb.net/DoctorWebApp?retryWrites=true&w=majority"
+  )
   .then(() => {
     app.listen(5000);
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });

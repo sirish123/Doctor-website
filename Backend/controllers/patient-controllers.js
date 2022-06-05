@@ -3,20 +3,6 @@ const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const Patient = require("../models/patientData");
 
-const DUMMY_PATIENTS = [
-  {
-    number: "7760633623",
-    name: "ASHOK",
-    gender: "MALE",
-    address: "shivajinagar",
-  },
-  {
-    number: "7349359536",
-    name: "Sirish",
-    gender: "MALE",
-    address: "kaggasdasapura",
-  },
-];
 
 const getPatientById = async (req, res, next) => {
   const patientId = req.params.pid;
@@ -53,14 +39,15 @@ const createPatient = async (req, res, next) => {
     );
   }
 
-  const { number, name, address, gender } = req.body;
+  const { number, name, address, gender, dateofbirth } = req.body;
 
   const createdPatient = new Patient({
-    // id: uuidv4(),
+   
     number,
     name,
     address,
     gender,
+    dateofbirth
   });
 
   try {

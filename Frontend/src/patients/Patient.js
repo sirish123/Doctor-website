@@ -2,27 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import PatientList from "./components/PatientList";
 
-const DUMMY_PLACES = [
-  {
-    id: "7760633623",
-    name: "ASHOK",
-    gender: "MALE",
-    address: "shivajinagr",
-  },
-  {
-    id: "7349359536",
-    name: "Sirish",
-    gender: "MALE",
-    address: "kaggasdasapura",
-  },
-];
 
 const Patient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [loadedPatients, setLoadedPatients] = useState([]);
   const [change, setchange] = useState(false);
-  const [patientId, setPatientId] = useState("7760633620");
+  const [patientId, setPatientId] = useState();
   const API_URL = `http://localhost:5000/api/patient/${patientId}`;
 
   const getInputValue = (event) => {
@@ -47,15 +33,17 @@ const Patient = () => {
       setIsLoading(false);
     };
     sendRequest();
-  }, [change]);
+  }, [change, API_URL]);
+  
   const errorHandler = () => {
     setError(null);
   };
 
   return (
     <>
-      <div className="searcharea">
+      <div className="search-area center">
         <input type="text" onBlur={getInputValue} />
+       
         <button
           type="button"
           className="btn btn-secondary btn-lg"
