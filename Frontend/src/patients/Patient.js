@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import PatientList from "./components/PatientList";
-
 
 const Patient = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +32,7 @@ const Patient = () => {
     };
     sendRequest();
   }, [change, API_URL]);
-  
+
   const errorHandler = () => {
     setError(null);
   };
@@ -42,11 +40,10 @@ const Patient = () => {
   return (
     <>
       <div className="search-area center">
-        <input type="text" onBlur={getInputValue} />
-       
+        <input className="searchinp" type="text" onBlur={getInputValue} />
         <button
           type="button"
-          className="btn btn-secondary btn-lg"
+          className="other"
           onClick={() => setchange((change) => !change)}
         >
           Search Query

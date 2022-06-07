@@ -6,17 +6,17 @@ const NavLinks = () =>{
   return (
     <ul className='nav-links'>
     <li>
-        <NavLink to='/' exact>SEARCH</NavLink>
+    <NavLink to='/' exact>APPOINTMENTS</NavLink>
     </li>
     <li>
-        <NavLink to='/newPatient'>NEW PATIENT</NavLink>
+        <NavLink to='/book' exact>BOOK</NavLink>
     </li>
     <li>
-        <NavLink to='/booking'>BOOK</NavLink>
+        <NavLink to='/history'>HISTORY</NavLink>
     </li>
-    <li>
+    {/* <li>
         <NavLink to='/auth'>PASSWORD CHANGE</NavLink>
-    </li>
+    </li> */}
      </ul>
   )
 }
