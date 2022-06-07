@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Doctor Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- First Bootstrap 5.2, followed by Bootstrap Icons 1.8.3-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
+    <!-- Custom Stylesheet(don't change order) -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg shadow">
+        <div class="container w-100 pe-3">
+            <a class="navbar-brand" href="#">Dr. A.R. Samiullah Acupuncture</a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon "></span></button>
+            <div class="collapse navbar-collapse" id="navbarLinks">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" id="appointments" href="#">Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="bookings" href="#">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="searchHistory" href="#">History</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Bookings-->
+    <!-- <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 border border-2 rounded shadow-sm">
+                <form>
+                    <div class="p-3">
+                        <h1>Search Patient</h1>
+                    </div>
+                    <div class="p-3">
+                        <input type="tel" class="form-control" id="searchByPhoneNumberBookings">
+                    </div>
+                    <div class="p-3">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-3 p-2 justify-content-center">
+            <div class="col-lg-10 border border-success">
+                <div class="accordion accordion-flush" id="bookingList">
+                    <div class="accordion-item p-2">
+                        <div class="accordion-header">
+                            <button class="accordion-button p-0 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#" aria-expanded="true">
+                                <div class="d-flex row w-100 header-row text-center">
+                                    <span class="p-2 col-4"><strong><i class="bi bi-person p-2"></i>Name</strong></span>
+                                    <span class="p-2 col-2"><strong><i class="bi bi-telephone p-2"></i>Phone
+                                            Number</strong></span>
+                                    <span class="p-2 col-2"><strong><i
+                                                class="bi bi-calendar p-2"></i>Date</strong></span>
+                                    <span class="p-2 col-2"><strong><i class="bi bi-clock p-2"></i>Time</strong></span>
+                                    <span class="p-2 col-2"><strong><i
+                                                class="bi bi-arrow-counterclockwise p-2"></i>Actions</strong></span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button p-0 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#patientOne" aria-expanded="false" aria-controls="patientOne">
+                                <div class="d-flex row w-100 align-items-center text-center">
+                                    <span class="p-2 col-4 overflow-auto">Sirish Sekhar</span>
+                                    <span class="p-2 col-2 overflow-auto">9876543210</span>
+                                    <span class="p-2 col-2 overflow-auto">26/6/22</span>
+                                    <span class="p-2 col-2 overflow-auto">9:13 PM</span>
+                                    <span class="p-2 col-2 overflow-auto">
+                                        <a type="button" class="btn btn-outline-dark"><i class="bi bi-mouse p1"></i></a>
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="patientOne" class="accordion-collapse collapse" aria-labelledby="patientOne"
+                            data-bs-parent="#bookingList">
+                            <div class="accordion-body">Whatever U want</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    <!-- End Bookings-->
+
+    <!--Appointments-->
+    <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 border border-2 rounded shadow-sm">
+                <form>
+                    <div class="p-3">
+                        <h1>Search Appointments</h1>
+                    </div>
+                    <div class="p-3">
+                        <input type="date" class="form-control" id="searchByDateAppointments" placeholder="DD/MM/YYYY">
+                    </div>
+                    <div class="p-3">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-3 p-2 justify-content-center">
+            <div class="col-lg-10 border border-success">
+                <div class="accordion accordion-flush" id="appointmentsList">
+                    <div class="accordion-item p-2">
+                        <div class="accordion-header">
+                            <button class="accordion-button p-0 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#" aria-expanded="true">
+                                <div class="d-flex row w-100 header-row text-center">
+                                    <span class="p-2 col-4"><strong><i class="bi bi-person p-2"></i>Name</strong></span>
+                                    <span class="p-2 col-2"><strong><i class="bi bi-telephone p-2"></i>Phone
+                                            Number</strong></span>
+                                    <span class="p-2 col-2"><strong><i
+                                                class="bi bi-calendar p-2"></i>Date</strong></span>
+                                    <span class="p-2 col-2"><strong><i class="bi bi-clock p-2"></i>Time</strong></span>
+                                    <span class="p-2 col-2"><strong><i
+                                                class="bi bi-arrow-counterclockwise p-2"></i>Actions</strong></span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button p-0 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#patientOne" aria-expanded="false" aria-controls="patientOne">
+                                <div class="d-flex row w-100 align-items-center text-center">
+                                    <span class="p-2 col-4 overflow-auto">Sirish Sekhar</span>
+                                    <span class="p-2 col-2 overflow-auto">9876543210</span>
+                                    <span class="p-2 col-2 overflow-auto">26/6/22</span>
+                                    <span class="p-2 col-2 overflow-auto">9:13 PM</span>
+                                    <span class="p-2 col-2 overflow-auto">
+                                        <a type="button" class="btn btn-outline-dark"><i class="bi bi-mouse p1"></i></a>
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="patientOne" class="accordion-collapse collapse" aria-labelledby="patientOne"
+                            data-bs-parent="#appointmentsList">
+                            <div class="accordion-body">Whatever U want</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button p-0 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#patientTwo" aria-expanded="false" aria-controls="patientTwo">
+                                <div class="d-flex row w-100 align-items-center text-center">
+                                    <span class="p-2 col-4 overflow-auto">Some Larger Name</span>
+                                    <span class="p-2 col-2 overflow-auto">9876543210</span>
+                                    <span class="p-2 col-2 overflow-auto">26/6/22</span>
+                                    <span class="p-2 col-2 overflow-auto">9:13 PM</span>
+                                    <span class="p-2 col-2 overflow-auto">
+                                        <a type="button" class="btn btn-outline-dark"><i class="bi bi-mouse p1"></i></a>
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="patientTwo" class="accordion-collapse collapse" aria-labelledby="patientTwo"
+                            data-bs-parent="#appointmentsList">
+                            <div class="accordion-body">Whatever U want</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <button class="accordion-button p-0 collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#patientThree" aria-expanded="false" aria-controls="patientThree">
+                                <div class="d-flex row w-100 align-items-center text-center">
+                                    <span class="p-2 col-4 overflow-auto">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+                                        Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                                        Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+                                        Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                                        Lorem Ipsum </span>
+                                    <span class="p-2 col-2 overflow-auto">9876543210</span>
+                                    <span class="p-2 col-2 overflow-auto">26/6/22</span>
+                                    <span class="p-2 col-2 overflow-auto">9:13 PM</span>
+                                    <span class="p-2 col-2 overflow-auto">
+                                        <a type="button" class="btn btn-outline-dark"><i class="bi bi-mouse p1"></i></a>
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                        <div id="patientThree" class="accordion-collapse collapse" aria-labelledby="patientThree"
+                            data-bs-parent="#appointmentsList">
+                            <div class="accordion-body">Whatever U want</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Apointments-->
+        <!-- scripts -->
+        <!-- First Popper.js, followed by Bootstrap 5.2-->
+        <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+            crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
