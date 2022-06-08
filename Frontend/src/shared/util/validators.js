@@ -6,6 +6,7 @@ const VALIDATOR_TYPE_MAX = 'MAX';
 const VALIDATOR_TYPE_EMAIL = 'EMAIL';
 const VALIDATOR_TYPE_DATEOFBIRTH = 'DATEOFBIRTH';
 const VALIDATOR_TYPE_FILE = 'FILE';
+const VALIDATOR_TYPE_TIME = 'TIME';
 
 export const VALIDATOR_REQUIRE = () => ({ type: VALIDATOR_TYPE_REQUIRE });
 export const VALIDATOR_FILE = () => ({ type: VALIDATOR_TYPE_FILE });
@@ -21,6 +22,7 @@ export const VALIDATOR_MIN = val => ({ type: VALIDATOR_TYPE_MIN, val: val });
 export const VALIDATOR_MAX = val => ({ type: VALIDATOR_TYPE_MAX, val: val });
 export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
 export const VALIDATOR_DATEOFBIRTH = () => ({ type: VALIDATOR_TYPE_DATEOFBIRTH });
+export const VALIDATOR_TIME = () => ({ type: VALIDATOR_TYPE_TIME });
 
 export const validate = (value, validators) => {
   let isValid = true;
@@ -44,7 +46,10 @@ export const validate = (value, validators) => {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
     }
     if (validator.type === VALIDATOR_TYPE_DATEOFBIRTH) {
-      isValid = isValid && /^\d{1,2}\-\d{1,2}\-\d{4}$/.test(value);
+      isValid = isValid && /^\d{2}\-\d{2}\-\d{4}$/.test(value);
+    }
+    if(validator.type === VALIDATOR_TYPE_TIME) {
+      isValid = isValid &&  /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(value);
     }
   }
   return isValid;

@@ -106,7 +106,7 @@ const UpdateBooking = () => {
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
-            UPDATE Booking
+            Update Booking
           </Button>
         </form>
       )}

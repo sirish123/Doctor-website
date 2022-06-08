@@ -130,10 +130,11 @@ const createBooking = async (req, res, next) => {
     );
   }
 
-  const { uniqueid, diagnosis, paymentamount, date, time } = req.body;
+  const { uniqueid, diagnosis,name, paymentamount, date, time } = req.body;
 
   const createdBooking = new Booking({
     uniqueid,
+    name,
     diagnosis,
     paymentamount,
     date,

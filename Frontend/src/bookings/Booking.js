@@ -7,6 +7,7 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
   VALIDATOR_DATEOFBIRTH,
+  VALIDATOR_TIME
 } from "../shared/util/validators";
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
@@ -18,6 +19,10 @@ const Booking = () => {
   const [formState, inputHandler] = useForm(
     {
       uniqueid: {
+        value: "",
+        isValid: false,
+      },
+      name: {
         value: "",
         isValid: false,
       },
@@ -51,6 +56,7 @@ const Booking = () => {
         "POST",
         JSON.stringify({
           uniqueid: formState.inputs.uniqueid.value,
+          name: formState.inputs.name.value,
           paymentamount: formState.inputs.paymentamount.value,
           diagnosis: formState.inputs.diagnosis.value,
           date: formState.inputs.date.value,
@@ -71,7 +77,16 @@ const Booking = () => {
           type="text"
           label="Phone Number"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
-          errorText="Please enter a valid uniqueid."
+          errorText="Please enter a valid Phone Number."
+          onInput={inputHandler}
+        />
+         <Input
+          id="name"
+          element="input"
+          type="text"
+          label="name"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a name."
           onInput={inputHandler}
         />
 
@@ -88,7 +103,7 @@ const Booking = () => {
           id="time"
           element="input"
           label="Time"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATEOFBIRTH()]}
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
           errorText="Please enter the time."
           onInput={inputHandler}
         />

@@ -6,20 +6,19 @@ const GetBooking = () => {
   const [error, setError] = useState();
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
   const [dateChange, setDatechange] = useState(false);
-  const [bookingDate, setBookingDate] = useState();
-  const API_URL2 = `http://localhost:5000/api/booking/date/${bookingDate}`;
+  const [bookingDate, setBookingDate] = useState("");
+  const API_URL = `http://localhost:5000/api/booking/date/${bookingDate}`;
 
   const getDateValue = (event) => {
     setBookingDate(event.target.value);
     console.log(bookingDate);
   };
 
-  
   useEffect(() => {
     const sendRequest = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(API_URL2);
+        const response = await fetch(API_URL);
         const responseData = await response.json();
         if (!response.ok) {
           throw new Error(responseData.message);
@@ -32,7 +31,7 @@ const GetBooking = () => {
       setIsLoading(false);
     };
     sendRequest();
-  }, [dateChange, API_URL2]);
+  }, [dateChange,API_URL]);
 
   const errorHandler = () => {
     setError(null);
@@ -40,19 +39,38 @@ const GetBooking = () => {
 
   return (
     <>
-      <div className="search-input center">
-        <button
-          type="button"
-          className="date-button"
-          onClick={() => setDatechange((dateChange) => !dateChange)}
-        >
-          Search By Date
-        </button>
-        <input className="left" type="text" onBlur={getDateValue} />
-        
+      <div className="container-fluid mt-5">
+        <div className="row justify-content-center">
+          <div className="col-lg-6 border border-2 rounded shadow-sm">
+            <form>
+              <div className="p-3">
+                <h1>Search Appointments</h1>
+              </div>
+              <div className="p-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="searchByDateAppointments"
+                    placeholder="DD/MM/YYYY"
+                    onChange={getDateValue}
+                  />
+              </div>
+              <div className="p-3">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => setDatechange((dateChange) => !dateChange)}
+                >
+                  Search By Date
+                </button>
+              </div>
+              <BookingList items={loadedBookingsDate} />
+            </form>
+          </div>
+        </div>
       </div>
+
       
-      <BookingList items={loadedBookingsDate} />
     </>
   );
 };

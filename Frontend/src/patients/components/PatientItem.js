@@ -6,14 +6,48 @@ import "./PatientItem.css";
 
 const PatientItem = (props) => {
   return (
-    <li className="patient-item ">
-      <Card className="patient-item__content center">
-        <div className="patient-item__info">
-          <h2>{props.name}{"  "}{props.number}{"  "}{props.dateofbirth}</h2>
+    <>
+      <div className="accordion accordion-flush" id="appointmentsList">
+        <div className="accordion-item p-2">
+          <div className="accordion-header">
+           
+              <div className="d-flex row w-100 header-row text-center">
+                <span className="p-2 col-4">
+                  <strong>
+                    <i className="bi bi-person p-2"></i>Name
+                  </strong>
+                </span>
+                <span className="p-2 col-2">
+                  <strong>
+                    <i className="bi bi-telephone p-2"></i>Phone Number
+                  </strong>
+                </span>
+                <span className="p-2 col-2">
+                  <strong>
+                    <i className="bi bi-calendar p-2"></i>Date Of Birth
+                  </strong>
+                </span>
+              </div>
+          </div>
         </div>
-        <Button to={`/booking`}>Book</Button>
-      </Card>
-    </li>
+      </div>
+      <li className="patient-item ">
+        <div className="accordion-header">
+         
+            <div className="d-flex row w-100 align-items-center text-center">
+              <span className="p-2 col-4 overflow-auto">{props.name}</span>
+              <span className="p-2 col-2 overflow-auto">{props.number}</span>
+              <span className="p-2 col-2 overflow-auto">
+                {props.dateofbirth}
+              </span>
+              <span className="p-2 col-2 overflow-auto">
+              <Button to={`/booking`}>Book</Button>
+              </span>
+            </div>
+         
+        </div>
+      </li>
+    </>
   );
 };
 

@@ -65,15 +65,24 @@ const BookingById = () => {
 
   return (
     <>
-      <div className="search-input">
+      <div className="center">
         <input className="left" type="text" onBlur={getInputValue} />
         <button
           type="button"
           className="other"
           onClick={() => setIdchange((idChange) => !idChange)}
         >
-          Search Query
+          Search By Number
         </button>
+       
+      </div>
+      <div className="center">
+          <BookingList items={loadedBookings} />
+        </div>
+        <hr />
+      <div className="center">
+       
+        <input className="theright" type="text" onBlur={getDateValue} />
         <button
           type="button"
           className="date-button"
@@ -81,11 +90,11 @@ const BookingById = () => {
         >
           Search By Date
         </button>
-        <input className="theright" type="text" onBlur={getDateValue} />
-        
-      </div>
-      <BookingList items={loadedBookings} />
-      <BookingList items={loadedBookingsDate} />
+      </div >
+      <div className="center">
+          <BookingList items={loadedBookingsDate} />
+        </div>
+        <hr />
     </>
   );
 };
