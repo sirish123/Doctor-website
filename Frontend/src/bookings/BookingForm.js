@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import DatePicker from "react-date-picker";
+import { useParams,useHistory } from "react-router-dom";
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
 import {
@@ -16,6 +15,9 @@ import "./BookingForm.css";
 
 const Booking = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const name = useParams().kid;
+  const number = useParams().did;
+  //console.log(BookingId);
   const [formState, inputHandler] = useForm(
     {
       uniqueid: {
@@ -79,6 +81,9 @@ const Booking = () => {
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
           errorText="Please enter a valid Phone Number."
           onInput={inputHandler}
+          initialValue={number}
+          initialValid={true}
+          
         />
          <Input
           id="name"
@@ -88,11 +93,14 @@ const Booking = () => {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a name."
           onInput={inputHandler}
+          initialValue={name}
+          initialValid={true}
         />
 
         <Input
           id="date"
           element="input"
+          type="date"
           label="Date"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATEOFBIRTH()]}
           errorText="Please enter a valid date."
@@ -103,6 +111,7 @@ const Booking = () => {
           id="time"
           element="input"
           label="Time"
+          type="time"
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
           errorText="Please enter the time."
           onInput={inputHandler}

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../../shared/components/FormElements/Button";
 
-import Card from "../../shared/components/UIElements/Card";
+
 import "./PatientItem.css";
 
 const PatientItem = (props) => {
@@ -41,7 +41,7 @@ const PatientItem = (props) => {
                 {props.dateofbirth}
               </span>
               <span className="p-2 col-2 overflow-auto">
-              <Button to={`/booking`}>Book</Button>
+              <Button to={`/booking/${props.name}/${props.number}`}>Book</Button>
               </span>
             </div>
          

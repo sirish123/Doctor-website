@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PatientList from "./components/PatientList";
-
+import Card from "../shared/components/UIElements/Card";
 const Patient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -39,6 +39,7 @@ const Patient = () => {
 
   return (
     <>
+    
       <div className="search-area center">
         <input className="searchinp" type="text" onBlur={getInputValue} />
         <button

@@ -6,18 +6,19 @@ import {
   Switch,
 } from "react-router-dom";
 
-import MainNavigation from "./shared/components/Navigation/MainNavigation";
+
 import Patient from "./patients/Patient";
 import NewPatient from "./patients/NewPatient";
-import Booking from "./bookings/Booking";
+import BookingForm from "./bookings/BookingForm";
 import GetBooking from "./bookings/GetBooking";
 import BookingById from "./bookings/BookingById";
 import UpdateBooking from "./bookings/UpdateBooking";
+import Navbar from "./shared/components/Navigation/Navbar";
 
 const App = () => {
   return (
     <Router>
-      <MainNavigation />
+     <Navbar />
       <main>
         <Switch>
           <Route path="/" exact>
@@ -35,8 +36,8 @@ const App = () => {
           <Route path="/booking/:bid" exact>
             <UpdateBooking />
           </Route>
-          <Route path="/booking" exact>
-            <Booking />
+          <Route path="/booking/:kid/:did" exact>
+            <BookingForm />
           </Route>
           <Redirect to="/" />
         </Switch>

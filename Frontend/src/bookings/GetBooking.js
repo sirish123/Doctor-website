@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
 import BookingList from "./components/BookingList";
 import "./BookingById.css";
-const GetBooking = () => {
+function GetBooking () {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
   const [dateChange, setDatechange] = useState(false);
   const [bookingDate, setBookingDate] = useState("");
   const API_URL = `http://localhost:5000/api/booking/date/${bookingDate}`;
-
-  const getDateValue = (event) => {
-    setBookingDate(event.target.value);
-    console.log(bookingDate);
-  };
-
+  console.log(bookingDate);
   useEffect(() => {
     const sendRequest = async () => {
       setIsLoading(true);
@@ -31,7 +26,7 @@ const GetBooking = () => {
       setIsLoading(false);
     };
     sendRequest();
-  }, [dateChange,API_URL]);
+  }, [dateChange]);
 
   const errorHandler = () => {
     setError(null);
@@ -41,18 +36,17 @@ const GetBooking = () => {
     <>
       <div className="container-fluid mt-5">
         <div className="row justify-content-center">
-          <div className="col-lg-6 border border-2 rounded shadow-sm">
+          <div className="col-lg-7 border border-2 rounded shadow-sm">
             <form>
               <div className="p-3">
                 <h1>Search Appointments</h1>
               </div>
               <div className="p-3">
                   <input
-                    type="text"
+                    type="date"
                     className="form-control"
-                    id="searchByDateAppointments"
-                    placeholder="DD/MM/YYYY"
-                    onChange={getDateValue}
+                    placeholder="dd-mm-yyyy"
+                    onChange={e=>setBookingDate(e.target.value)}
                   />
               </div>
               <div className="p-3">

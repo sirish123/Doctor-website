@@ -18,7 +18,6 @@ const UpdateBooking = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedBooking, setLoadedBooking] = useState();
   const BookingId = useParams().bid;
-  console.log(BookingId);
   const history = useHistory();
 
   const [formState, inputHandler, setFormData] = useForm(

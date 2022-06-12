@@ -46,7 +46,7 @@ export const validate = (value, validators) => {
       isValid = isValid && /^\S+@\S+\.\S+$/.test(value);
     }
     if (validator.type === VALIDATOR_TYPE_DATEOFBIRTH) {
-      isValid = isValid && /^\d{2}\-\d{2}\-\d{4}$/.test(value);
+      isValid = isValid && /^\d{4}\-\d{2}\-\d{2}$/.test(value);
     }
     if(validator.type === VALIDATOR_TYPE_TIME) {
       isValid = isValid &&  /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(value);
