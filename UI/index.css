@@ -1,0 +1,56 @@
+body{
+    background-color: #EEEEEE;
+}
+
+/* Navbar CUstom Styling */
+.navbar{
+    background-color: #06283D !important;
+    font-family: 'Noto Serif', serif !important;
+}
+
+.navbar .navbar-brand, .navbar .nav-link{
+    color: white !important;
+}
+
+/* Search Box Custom Styling */
+.searchBox{
+    background-color: white !important;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.searchBox h1{
+    font-family: 'Roboto Slab', serif !important;
+}
+
+.searchBox button{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Table Custom Styling */
+.recordHolder{
+    background-color: white !important;
+}
+
+.recordTable thead{
+    background-color: #2552AC;
+}
+
+.recordTable thead tr{
+    color: white !important;
+    font-family: 'Merriweather', sans-serif;
+}
+
+.recordTable tr{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Dialog Boxes Custom Design */
+.modal .modal-header{
+    color: white !important;
+    background-color: #2552AC !important;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.modal .modal-footer button{
+    font-family: 'Ubuntu', sans-serif;
+}
