@@ -17,9 +17,13 @@ import "../../bookings/BookingForm.css";
 const UpdateTreatment= () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedprice, setLoadedprice] = useState();
+  const [it, setIt] = useState("stuff");
+  
   const priceId = useParams().sid;
   const history = useHistory();
-
+const update =()=>{
+  setIt("fuckoff");
+}
   const [formState, inputHandler, setFormData] = useForm(
     {
       treatmentName: {
@@ -67,7 +71,7 @@ const UpdateTreatment= () => {
         `http://localhost:5000/api/price/${priceId}`,
         "PATCH",
         JSON.stringify({
-          treatmentName: formState.inputs.treatmentName.value,
+          treatmentName: it,
           price: formState.inputs.price.value,
         }),
         {
@@ -105,6 +109,8 @@ const UpdateTreatment= () => {
             initialValue={loadedprice.price}
             initialValid={true}
           />
+         {/* <button onclick ={setIt("fuckoff")}>new </button> */}
+         <Button type="button" onClick = {update}>new</Button>
           <Button type="submit" disabled={!formState.isValid}>
             Update price
           </Button>

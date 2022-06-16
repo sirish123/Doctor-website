@@ -18,6 +18,7 @@ import BillingMainPage from "./billing/BillingMainPage";
 import CreateTreatment from "./billing/prices/CreateTreatment";
 import UpdateTreatment from "./billing/prices/UpdateTreatment";
 import FetchTreatment from "./billing/prices/FetchTreatment";
+import Testing from "./billing/prices/Testing";
 
 const App = () => {
   return (
@@ -27,6 +28,9 @@ const App = () => {
         <Switch>
           <Route path="/" exact>
             <GetBooking />
+          </Route>
+          <Route path="/testing" exact>
+           <Testing />
           </Route>
           <Route path="/book" exact>
             <Patient />
