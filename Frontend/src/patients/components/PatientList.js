@@ -10,7 +10,7 @@ const PatientList = (props) => {
       <div className="patient-list center">
         <Card>
           <h2 className="text-center">No patients found.</h2>
-          <Button to={`/newPatient`}>
+          <Button special={`/newPatient`}>
             <a className="btn btn-primary w-100">
               <i class="bi bi-pen-fill p-2"></i>Create New Patient
             </a>

@@ -6,7 +6,7 @@ function GetBooking() {
   const [error, setError] = useState();
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
   const [dateChange, setDatechange] = useState(false);
-  const [bookingDate, setBookingDate] = useState("");
+  const [bookingDate, setBookingDate] = useState(new Date().toISOString().slice(0, 10));
   const API_URL = `http://localhost:5000/api/booking/date/${bookingDate}`;
 
   useEffect(() => {

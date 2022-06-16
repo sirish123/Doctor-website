@@ -33,7 +33,7 @@ const BookingItem = (props) => {
           </div>
         </div>
       </li> */}
-      <tr class="accordion-toggle align-middle record">
+      <tr className="accordion-toggle align-middle record">
         <td>{props.name}</td>
         <td>{props.uniqueid}</td>
         <td>
@@ -47,39 +47,39 @@ const BookingItem = (props) => {
         <td>{props.time}</td>
         <td>
           {props.code === 1 ? (
-            <Button to={`/booking/${props.id}`}>
+            <Button special={`/booking/${props.id}`}>
               <a className="btn m-1">
-                <i class="bi bi-mouse p1"></i>
+                <i className="bi bi-mouse p1"></i>
               </a>
             </Button>
           ) : (
-            <Button to={`/booking/${props.id}`}>
+            <Button special={`/booking/${props.id}`}>
               <a className="btn m-1">
-                <i class="bi bi-credit-card p1"></i>
+                <i className="bi bi-credit-card p1"></i>
               </a>
             </Button>
           )}
 
           <a
             type="button"
-            class="btn m-1"
+            className="btn m-1"
             data-bs-toggle="collapse"
             data-bs-target={"#patient" + id}
           >
-            <i class="bi bi-eye"></i>
+            <i className="bi bi-eye"></i>
           </a>
         </td>
       </tr>
 
       <tr>
         <td
-          class="accordion-body collapse p-2"
+          className="accordion-body collapse p-2"
           id={"patient" + id++}
           colspan="12"
         >
           <div>
-            <div class="text-start p-3">
-              <p class="diagonis text-muted text-center">{props.diagnosis}</p>
+            <div className="text-start p-3">
+              <p className="diagonis text-muted text-center">{props.diagnosis}</p>
             </div>
           </div>
         </td>
