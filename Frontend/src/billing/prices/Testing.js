@@ -7,10 +7,9 @@ export default function Testing() {
   const API_URL = `http://localhost:5000/api/price/getit`;
   const [treatmentPrice, settreatmentPrice] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
-  const [display, setdisplay] = useState();
+  const [display, setdisplay] = useState("To Be Updated");
   const [total, setTotal] = useState(0);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedBooking, setLoadedBooking] = useState();
   const BookingId = "62aa167265dbb0b4e50660d4";
 
   useEffect(() => {
@@ -38,13 +37,15 @@ export default function Testing() {
         "PATCH",
         JSON.stringify({
           paymentamount: total,
-          diagnosis:display
+          diagnosis: display,
         }),
         {
           "Content-Type": "application/json",
         }
       );
-    } catch (err) {console.log(err)}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleOnChange = (position) => {
@@ -53,28 +54,26 @@ export default function Testing() {
     );
     //console.log(checkedState);
     setCheckedState(updatedCheckedState);
-    
+
     const totalPrice = updatedCheckedState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
-            
           return sum + treatmentPrice[index].price;
         }
         return sum;
       },
       0
     );
-    const totalPrice2 = updatedCheckedState.reduce(
-        (sum, currentState, index) => {
-          if (currentState === true) {
-              
-            return sum + treatmentPrice[index].treatmentName;
-          }
-          return sum;
-        },
-        0
-      );
-    setdisplay(totalPrice2);
+    const cars = [];
+    updatedCheckedState.map((item, index) => 
+    { 
+      if(item===true)
+      {
+       cars.push(treatmentPrice[index].treatmentName);
+      }
+    });
+    setdisplay(cars);
+    console.log(display);
     setTotal(totalPrice);
   };
 
@@ -82,7 +81,7 @@ export default function Testing() {
     <div className="App">
       <h3>Select treatmentPrice</h3>
       <ul className="treatmentPrice-list">
-        {treatmentPrice.map(({ treatmentName, price }, index) => {
+        {treatmentPrice && treatmentPrice.map(({ treatmentName, price }, index) => {
           return (
             <li key={index}>
               <div className="treatmentPrice-list-item">
@@ -90,9 +89,9 @@ export default function Testing() {
                   <input
                     type="checkbox"
                     id={`custom-checkbox-${index}`}
-                    name={treatmentName}
-                    value={treatmentName}
-                    checked={checkedState[index]}
+                    name={treatmentName || ''}
+                    value={treatmentName || ''}
+                    checked={checkedState[index] || false}
                     onChange={() => handleOnChange(index)}
                   />
                   <label htmlFor={`custom-checkbox-${index}`}>
@@ -108,8 +107,10 @@ export default function Testing() {
           <div className="treatmentPrice-list-item">
             <div className="left-section">Total:</div>
             <div className="right-section">{getFormattedPrice(total)}</div>
-            <h1>{display}</h1>
-            <button tyep ="button" onClick ={BookingUpdateSubmitHandler }>update</button>
+           <h1>{display}</h1>
+            <button tyep="button" onClick={BookingUpdateSubmitHandler}>
+              update
+            </button>
           </div>
         </li>
       </ul>
