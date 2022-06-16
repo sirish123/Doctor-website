@@ -1,0 +1,59 @@
+.nmodal {
+  z-index: 100;
+  position: fixed;
+  top: 22vh;
+  left: 10%;
+  width: 80%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+}
+
+.nmodal__header {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border-radius: 0.45rem;
+  background: #2a006e;
+  color: white;
+}
+
+.nmodal__header h2 {
+  margin: 0.5rem;
+}
+
+.nmodal__content {
+  padding: 1rem 0.5rem;
+}
+
+.nmodal__footer {
+  padding: 1rem 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .nmodal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+
+.nmodal-enter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.nmodal-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.nmodal-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nmodal-exit-active {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: all 200ms;
+}

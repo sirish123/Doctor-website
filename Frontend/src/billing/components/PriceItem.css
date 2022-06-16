@@ -1,0 +1,55 @@
+.price-item {
+  margin: 0;
+}
+
+.price-item__content {
+  padding: 0;
+}
+
+.price-item__info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.price-item__image {
+  width: 100%;
+  height: 12.5rem;
+  margin-right: 1.5rem;
+}
+
+.price-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-item__info h2,
+.price-item__info h3,
+.price-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.price-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.price-item__modal-content {
+  padding: 0;
+}
+
+.price-item__modal-actions {
+  text-align: right;
+}
+
+.price-item__actions button,
+.price-item__actions a {
+  margin: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .price-item__image {
+    height: 20rem;
+  } 
+}

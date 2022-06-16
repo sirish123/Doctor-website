@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Doctor Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- First Bootstrap 5.2, followed by Bootstrap Icons 1.8.3, followed by Google Fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather&family=Noto+Serif&family=Roboto+Slab&family=Ubuntu&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Stylesheet(don't change order) -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow">
+        <div class="container w-100 pe-3">
+            <a class="navbar-brand" href="appointments.html">Dr. A.R. Samiullah Acupuncture</a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon "></span></button>
+
+            <div class="collapse navbar-collapse" id="navbarLinks">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" id="appointments" href="appointments.html">Appointments</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" id="bookings" href="bookings.html">Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="searchHistory" href="history.html">History</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- End Nabar -->
+
+    <!--Bookings-->
+    <div class="container-fluid mt-5">
+        <!-- Search Patient Field -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6 border border-2 rounded shadow-sm searchBox">
+                <form class="row g-3 m-2">
+                    <h1>Search Patient</h1>
+                    <div>
+                        <input type="tel" class="form-control" id="searchByPhoneNumberBookings"
+                            placeholder="Phone Number">
+                    </div>
+                    <div class="mb-3 w-100 text-end">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-search p-2"></i>Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-3 p-2 justify-content-center text-center">
+            <div class="col-lg-10 p-0 border border-bg-success recordHolder">
+                <table class="table table-condensed recordTable">
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tr class="accordion-toggle align-middle record">
+                        <td>Sirish Sekhar</td>
+                        <td>9878154569</td>
+                        <td>26/2/2022</td>
+                        <td>9:13 PM</td>
+                        <td>
+                            <a type="button" class="btn m-1" data-bs-toggle="modal" data-bs-target="#make-booking"><i
+                                    class="bi bi-mouse p1"></i></a>
+                            <a type="button" class="btn m-1" data-bs-toggle="collapse" data-bs-target="#patientOne"><i
+                                    class="bi bi-eye"></i></a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="accordion-body collapse p-2" id="patientOne" colspan="12">
+                            <div>
+                                <div class="text-start p-3">
+                                    <p class="diagonis text-muted">Lorem Ipsum is simply dummy text of the printing and
+                                        typesetting
+                                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                                        1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                        type specimen book. It has survived not only five centuries, but also the leap
+                                        into electronic typesetting, remaining essentially unchanged. It was popularised
+                                        in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                                        passages, and more recently with desktop publishing software like Aldus
+                                        PageMaker including versions of Lorem Ipsum.</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="12">
+                            <h5 class="text-muted">Patient not found. Do you want to create one 😂?</h3>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#create-new-patient"><i class="bi bi-pen-fill p-2"></i>Create New
+                                    Patient
+                                </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Modals-->
+            <!-- Create Patient-->
+            <div class="modal fade" id="create-new-patient" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title">Register new patient</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form id="create-new-patient-form">
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="cnp-Name" placeholder="Name">
+                                        <label for="cnp-Name">Name</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" value="+91 7780151257"
+                                            id="cnp-PhoneNumber" disabled>
+                                        <label for="cnp-PhoneNumber">Phone Number</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="cnp-Address" placeholder="Address">
+                                        <label for="cnp-Address">Address</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <h6 class="text-muted text-start ps-1">Gender</h6>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="GenderRadio"
+                                                id="cnp-Male" value="Male">
+                                            <label class="form-check-label" for="cnp-Male">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="GenderRadio"
+                                                id="cnp-Female" value="Female">
+                                            <label class="form-check-label" for="cnp-Female">Female</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="GenderRadio"
+                                                id="cnp-Other" value="Other">
+                                            <label class="form-check-label" for="cnp-Other">Other</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input class="form-control" type="date" id="cnp-DOB"
+                                            placeholder="Date of Birth">
+                                        <label for="cnp-DOB">Date of Birth</label>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book an appointment -->
+            <div class="modal fade" id="make-booking" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h5 class="modal-title">Book an Appointment</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form id="make-booking-form">
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="bap-PhoneNumber"
+                                            placeholder="Phone Number" value="+91 9786534210" readonly>
+                                        <label for="bap-PhoneNumber">Phone Number</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" id="bap-Date">
+                                        <label for="bap-Date">Date</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="time" class="form-control" id="bap-Time">
+                                        <label for="bap-Time">Time</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Book</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modals-->
+            <!-- End Bookings-->
+
+            <!-- scripts -->
+            <!-- First Popper.js, followed by Bootstrap 5.2-->
+            <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+                integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+                crossorigin="anonymous"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+                integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>
