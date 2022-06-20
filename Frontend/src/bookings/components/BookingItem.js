@@ -1,38 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../shared/components/FormElements/Button";
-import Card from "../../shared/components/UIElements/Card";
 import "./BookingItem.css";
 
 let id = 0;
 const BookingItem = (props) => {
   return (
     <>
-      {/* <li className="booking-item">
-        <div className="accordion-item">
-          <div className="accordion-header">
-            <div className="d-flex row w-200 align-items-center text-center">
-              <span className="p-2 col-2 overflow-auto">{props.name}</span>
-              <span className="p-2 col-2 overflow-auto">{props.uniqueid}</span>
-              <span className="p-2 col-2 overflow-auto">
-                {props.date.substring(8, 10) +
-                  "-" +
-                  props.date.substring(5, 7) +
-                  "-" +
-                  props.date.substring(0, 4)}
-              </span>
-              <span className="p-2 col-2 overflow-auto">{props.time}</span>
-              <span className="p-2 col-2 overflow-auto">{props.diagnosis}</span>
-              <span className="p-2 col-2 overflow-auto">
-                {props.code === 1 ? (
-                  <Button to={`/booking/${props.id}`}>Update</Button>
-                ) : (
-                  <Button to={`/booking/${props.id}`}>Bill</Button>
-                )}
-              </span>
-            </div>
-          </div>
-        </div>
-      </li> */}
       <tr className="accordion-toggle align-middle record">
         <td>{props.name}</td>
         <td>{props.uniqueid}</td>
@@ -48,19 +21,20 @@ const BookingItem = (props) => {
         <td>
           {props.code === 1 ? (
             <Button special={`/booking/${props.id}`}>
-              <a className="btn m-1">
+              <a href="/#" className="btn m-1">
                 <i className="bi bi-mouse p1"></i>
               </a>
             </Button>
           ) : (
             <Button special={`/booking/${props.id}`}>
-              <a className="btn m-1">
+              <a href="/#" className="btn m-1">
                 <i className="bi bi-credit-card p1"></i>
               </a>
             </Button>
           )}
 
           <a
+            href="/#"
             type="button"
             className="btn m-1"
             data-bs-toggle="collapse"

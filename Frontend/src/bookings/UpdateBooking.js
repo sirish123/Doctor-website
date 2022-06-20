@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState} from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
-import Card from "../shared/components/UIElements/Card";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
@@ -54,7 +53,7 @@ const UpdateBooking = () => {
           },
           true
         );
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchBooking();
   }, [sendRequest, BookingId, setFormData]);
@@ -74,40 +73,50 @@ const UpdateBooking = () => {
         }
       );
       history.push("/"); //+ auth.userId + '/Bookings'
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {!isLoading && loadedBooking && (
-        <form className="booking-form" onSubmit={BookingUpdateSubmitHandler}>
-          <Input
-            id="paymentamount"
-            element="input"
-            type="text"
-            label="paymentamount"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid paymentamount."
-            onInput={inputHandler}
-            initialValue={loadedBooking.paymentamount}
-            initialValid={true}
-          />
-          <Input
-            id="diagnosis"
-            element="textarea"
-            label="diagnosis"
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid diagnosis (min. 5 characters)."
-            onInput={inputHandler}
-            initialValue={loadedBooking.diagnosis}
-            initialValid={true}
-          />
-          <Button type="submit" disabled={!formState.isValid}>
-            Update Booking
-          </Button>
-        </form>
-      )}
+      <div class="row mt-3 p-2 justify-content-center text-center">
+        
+        {isLoading && (
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
+        {!isLoading && loadedBooking && (
+          <form className="booking-form" onSubmit={BookingUpdateSubmitHandler}>
+            <Input
+              id="paymentamount"
+              element="input"
+              type="text"
+              label="Payment Amount"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter a valid paymentamount."
+              onInput={inputHandler}
+              initialValue={loadedBooking.paymentamount}
+              initialValid={true}
+            />
+            <Input
+              id="diagnosis"
+              element="textarea"
+              label="Diagnosis"
+              validators={[VALIDATOR_MINLENGTH(5)]}
+              errorText="Please enter a valid diagnosis (min. 5 characters)."
+              onInput={inputHandler}
+              initialValue={loadedBooking.diagnosis}
+              initialValid={true}
+            />
+            <Button type="submit" disabled={!formState.isValid}>
+              Update Booking
+            </Button>
+          </form>
+        )}
+      </div>
     </React.Fragment>
   );
 };

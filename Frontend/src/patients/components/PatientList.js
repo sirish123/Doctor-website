@@ -11,7 +11,7 @@ const PatientList = (props) => {
         <Card>
           <h2 className="text-center">No patients found.</h2>
           <Button special={`/newPatient`}>
-            <a className="btn btn-primary w-100">
+            <a  href="/#" className="btn btn-primary w-100">
               <i class="bi bi-pen-fill p-2"></i>Create New Patient
             </a>
           </Button>

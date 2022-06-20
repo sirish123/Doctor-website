@@ -1,29 +1,24 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
-import Card from "../../shared/components/UIElements/Card";
-import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
-  VALIDATOR_MINLENGTH,
 } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "../../bookings/BookingForm.css";
 
-const UpdateTreatment= () => {
+const UpdateTreatment = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedprice, setLoadedprice] = useState();
-  const [it, setIt] = useState("stuff");
-  
+
   const priceId = useParams().sid;
   const history = useHistory();
-const update =()=>{
-  setIt("fuckoff");
-}
+
   const [formState, inputHandler, setFormData] = useForm(
     {
       treatmentName: {
@@ -59,7 +54,7 @@ const update =()=>{
           },
           true
         );
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchPrices();
   }, [sendRequest, priceId, setFormData]);
@@ -71,7 +66,7 @@ const update =()=>{
         `http://localhost:5000/api/price/${priceId}`,
         "PATCH",
         JSON.stringify({
-          treatmentName: it,
+          treatmentName: formState.inputs.treatmentName.value,
           price: formState.inputs.price.value,
         }),
         {
@@ -79,12 +74,13 @@ const update =()=>{
         }
       );
       history.push("/"); //+ auth.userId + '/prices'
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+      <div class="row mt-3 p-2 justify-content-center text-center">
       {!isLoading && loadedprice && (
         <form className="booking-form" onSubmit={priceUpdateSubmitHandler}>
           <Input
@@ -109,13 +105,13 @@ const update =()=>{
             initialValue={loadedprice.price}
             initialValid={true}
           />
-         {/* <button onclick ={setIt("fuckoff")}>new </button> */}
-         <Button type="button" onClick = {update}>new</Button>
+
           <Button type="submit" disabled={!formState.isValid}>
             Update price
           </Button>
         </form>
       )}
+      </div>
     </React.Fragment>
   );
 };

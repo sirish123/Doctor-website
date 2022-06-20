@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import BookingList from "./components/BookingList";
-import "./BookingById.css";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import { useHttpClient } from "../shared/hooks/http-hook";
+
 const BookingById = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
   const [loadedBookings, setLoadedBookings] = useState([]);
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
-  const [idChange, setIdchange] = useState(false);
-  const [dateChange, setDatechange] = useState(false);
   const [customSwitch, setCustomSwitch] = useState(false);
   const [bookingId, setbookingId] = useState();
   const [bookingDate, setBookingDate] = useState();
-  const API_URL = `http://localhost:5000/api/booking/number/${bookingId}`;
-  const API_URL2 = `http://localhost:5000/api/booking/date/${bookingDate}`;
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
 
   const getInputValue = (event) => {
     setbookingId(event.target.value);
@@ -22,79 +20,34 @@ const BookingById = () => {
     setBookingDate(event.target.value);
     console.log(bookingDate);
   };
+
   useEffect(() => {
-    const sendRequest = async () => {
-      setIsLoading(true);
+    const fetchByNumber = async () => {
       try {
-        const response = await fetch(API_URL);
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        console.log(responseData.booking);
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/booking/number/${bookingId}`
+        );
         setLoadedBookings(responseData.booking);
-      } catch (err) {
-        setError(err.message);
-      }
-      setIsLoading(false);
+      } catch (err) { }
     };
-    sendRequest();
-  }, [idChange, API_URL]);
+    fetchByNumber();
+  }, [sendRequest, bookingId]);
 
   useEffect(() => {
-    const sendRequest = async () => {
-      setIsLoading(true);
+    const fetchByDate = async () => {
       try {
-        const response = await fetch(API_URL2);
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        console.log(responseData.booking);
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/booking/date/${bookingDate}`
+        );
         setLoadedBookingsDate(responseData.booking);
-      } catch (err) {
-        setError(err.message);
-      }
-      setIsLoading(false);
+      } catch (err) { }
     };
-    sendRequest();
-  }, [dateChange, API_URL2]);
-
-  const errorHandler = () => {
-    setError(null);
-  };
+    fetchByDate();
+  }, [sendRequest, bookingDate]);
 
   return (
-    <>
-      {/* <div className="center">
-        <input className="left" type="text" onBlur={getInputValue} />
-        <button
-          type="button"
-          className="other"
-          onClick={() => setIdchange((idChange) => !idChange)}
-        >
-          Search By Number
-        </button>
-      </div>
-      <div className="center">
-        <BookingList items={loadedBookings} />
-      </div>
-      <hr />
-      <div className="center">
-        <input className="theright" type="text" onBlur={getDateValue} />
-        <button
-          type="button"
-          className="date-button"
-          onClick={() => setDatechange((dateChange) => !dateChange)}
-        >
-          Search By Date
-        </button>
-      </div>
-      <div className="center">
-        <BookingList items={loadedBookingsDate} />
-      </div>
-      <hr /> */}
-
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <div className="container-fluid mt-5">
         <div className="row ms-3 me-3">
           <div className="col-lg-5 mb-3 border border-2 rounded shadow-sm searchBox">
@@ -103,7 +56,7 @@ const BookingById = () => {
               <div>
                 <input
                   type="date"
-                  class="form-control"
+                  className="form-control"
                   id="searchByDateHistory"
                   placeholder="Date of Appointment"
                   onBlur={getDateValue}
@@ -112,13 +65,12 @@ const BookingById = () => {
               <div className="mb-3 w-100 text-end">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => {
-                    setDatechange((dateChange) => !dateChange);
                     setCustomSwitch(true);
                   }}
                 >
-                  <i class="bi bi-search p-2"></i>Search
+                  <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>
             </form>
@@ -139,13 +91,12 @@ const BookingById = () => {
               <div className=" mb-3 w-100 text-end">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={() => {
-                    setIdchange((idChange) => !idChange);
                     setCustomSwitch(false);
                   }}
                 >
-                  <i class="bi bi-search p-2"></i>Search
+                  <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>
             </form>
@@ -153,17 +104,36 @@ const BookingById = () => {
         </div>
         {customSwitch === true ? (
           <div>
-            <h2>BOOKINGS BY DATE</h2>
-            <BookingList items={loadedBookingsDate} />
+            {isLoading && (
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            )}
+            <div class="d-flex justify-content-center mt-3">
+              <h2>BOOKINGS BY DATE</h2>
+            </div>
+            {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} />}
+
           </div>
         ) : (
           <div>
-            <h2>BOOKINGS BY PATIENT</h2>
-            <BookingList items={loadedBookings} />
+            {isLoading && (
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            )}
+            <div class="d-flex justify-content-center mt-3">
+              <h2>BOOKINGS BY NUMBER</h2>
+            </div>
+            {!isLoading && loadedBookings && <BookingList items={loadedBookings} />}
           </div>
         )}
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

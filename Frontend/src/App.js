@@ -23,14 +23,14 @@ import Testing from "./billing/prices/Testing";
 const App = () => {
   return (
     <Router>
-     <Navbar />
+      <Navbar />
       <main>
         <Switch>
           <Route path="/" exact>
             <GetBooking />
           </Route>
           <Route path="/testing" exact>
-           <Testing />
+            <Testing />
           </Route>
           <Route path="/book" exact>
             <Patient />

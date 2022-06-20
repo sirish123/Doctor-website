@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
@@ -11,13 +13,12 @@ import {
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
 
-import "./BookingForm.css";
+
 
 const Booking = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const name = useParams().kid;
   const number = useParams().did;
-  //console.log(BookingId);
   const [formState, inputHandler] = useForm(
     {
       uniqueid: {
@@ -67,58 +68,69 @@ const Booking = () => {
         { "Content-Type": "application/json" }
       );
       history.push("/");
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
     <React.Fragment>
-      <form className="booking-form" onSubmit={placeSubmitHandler}>
-        <Input
-          id="uniqueid"
-          element="input"
-          type="text"
-          label="Phone Number"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
-          errorText="Please enter a valid Phone Number."
-          onInput={inputHandler}
-          initialValue={number}
-          initialValid={true}
-        />
-        <Input
-          id="name"
-          element="input"
-          type="text"
-          label="name"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a name."
-          onInput={inputHandler}
-          initialValue={name}
-          initialValid={true}
-        />
+      <div class="row mt-3 p-2 justify-content-center text-center">
+        <ErrorModal error={error} onClear={clearError} />
+        {isLoading && (
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
+        {!isLoading && (
+          <form className="booking-form" onSubmit={placeSubmitHandler}>
+            <Input
+              id="uniqueid"
+              element="input"
+              type="text"
+              label="Phone Number"
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
+              errorText="Please enter a valid Phone Number."
+              onInput={inputHandler}
+              initialValue={number}
+              initialValid={true}
+            />
+            <Input
+              id="name"
+              element="input"
+              type="text"
+              label="Name"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter a Name."
+              onInput={inputHandler}
+              initialValue={name}
+              initialValid={true}
+            />
 
-        <Input
-          id="date"
-          element="input"
-          type="date"
-          label="Date"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATEOFBIRTH()]}
-          errorText="Please enter a valid date."
-          onInput={inputHandler}
-        />
+            <Input
+              id="date"
+              element="input"
+              type="date"
+              label="Date"
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATEOFBIRTH()]}
+              errorText="Please enter a valid date."
+              onInput={inputHandler}
+            />
 
-        <Input
-          id="time"
-          element="input"
-          label="Time"
-          type="time"
-          validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
-          errorText="Please enter the time."
-          onInput={inputHandler}
-        />
-        <Button type="submit" disabled={!formState.isValid}>
-          ADD booking
-        </Button>
-      </form>
+            <Input
+              id="time"
+              element="input"
+              label="Time"
+              type="time"
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
+              errorText="Please enter a time in the field."
+              onInput={inputHandler}
+            />
+            <Button type="submit" disabled={!formState.isValid}>
+              ADD booking
+            </Button>
+          </form>)}
+      </div>
     </React.Fragment>
   );
 };

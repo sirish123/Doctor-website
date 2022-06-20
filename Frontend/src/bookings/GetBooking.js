@@ -1,39 +1,33 @@
 import React, { useState, useEffect } from "react";
 import BookingList from "./components/BookingList";
-import "./BookingById.css";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import { useHttpClient } from "../shared/hooks/http-hook";
+
 function GetBooking() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
-  const [dateChange, setDatechange] = useState(false);
-  const [bookingDate, setBookingDate] = useState(new Date().toISOString().slice(0, 10));
-  const API_URL = `http://localhost:5000/api/booking/date/${bookingDate}`;
+  const [bookingDate, setBookingDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
 
   useEffect(() => {
-    const sendRequest = async () => {
-      setIsLoading(true);
+    const fetchByDate = async () => {
       try {
-        const response = await fetch(API_URL);
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        console.log(responseData.booking);
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/booking/date/${bookingDate}`
+        );
         setLoadedBookingsDate(responseData.booking);
-      } catch (err) {
-        setError(err.message);
-      }
-      setIsLoading(false);
+      } catch (err) { }
     };
-    sendRequest();
-  }, [dateChange, API_URL]);
+    fetchByDate();
+  }, [sendRequest, bookingDate]);
 
-  const errorHandler = () => {
-    setError(null);
-  };
+
+
 
   return (
-    <>
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <div className="container-fluid mt-5">
         <div className="row justify-content-center">
           <div className="col-lg-6 border border-2 rounded shadow-sm searchBox">
@@ -52,7 +46,7 @@ function GetBooking() {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={() => setDatechange((dateChange) => !dateChange)}
+                 
                 >
                   <i className="bi bi-search p-2"></i>Search
                 </button>
@@ -60,9 +54,16 @@ function GetBooking() {
             </form>
           </div>
         </div>
-        <BookingList items={loadedBookingsDate} code={1} />
+        {isLoading && (
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
+        {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} code={1} />}
       </div>
-    </>
+    </React.Fragment>
   );
 }
 

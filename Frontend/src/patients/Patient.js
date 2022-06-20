@@ -1,85 +1,71 @@
 import React, { useState, useEffect } from "react";
 import PatientList from "./components/PatientList";
-import Card from "../shared/components/UIElements/Card";
-const Patient = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-  const [loadedPatients, setLoadedPatients] = useState([]);
-  const [change, setchange] = useState(false);
-  const [patientId, setPatientId] = useState();
-  const API_URL = `http://localhost:5000/api/patient/${patientId}`;
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
 
+import { useHttpClient } from "../shared/hooks/http-hook";
+
+const Patient = () => {
+  const [loadedPatients, setLoadedPatients] = useState([]);
+  const [patientId, setPatientId] = useState();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const getInputValue = (event) => {
     setPatientId(event.target.value);
     console.log(patientId);
   };
-
   useEffect(() => {
-    const sendRequest = async () => {
-      setIsLoading(true);
+    const fetchPatients = async () => {
       try {
-        const response = await fetch(API_URL);
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        console.log(responseData.patient);
+        const responseData = await sendRequest(
+          `http://localhost:5000/api/patient/${patientId}`
+        );
         setLoadedPatients(responseData.patient);
-      } catch (err) {
-        setError(err.message);
-      }
-      setIsLoading(false);
+      } catch (err) { }
     };
-    sendRequest();
-  }, [change, API_URL]);
-
-  const errorHandler = () => {
-    setError(null);
-  };
+    fetchPatients();
+  }, [sendRequest, patientId]);
 
   return (
-    <>
-      {/* <div className="search-area center">
-        <input className="searchinp" type="text" onBlur={getInputValue} />
-        <button
-          type="button"
-          className="other"
-          onClick={() => setchange((change) => !change)}
-        >
-          Search Query
-        </button>
-      </div> */}
-
-      <div class="container-fluid mt-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 border border-2 rounded shadow-sm searchBox">
-            <form class="row g-3 m-2">
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      <div className="container-fluid mt-5">
+        <div className="row justify-content-center">
+          <div className="col-lg-6 border border-2 rounded shadow-sm searchBox">
+            <form className="row g-3 m-2">
               <h1>Search Patient</h1>
               <div>
                 <input
                   type="tel"
-                  class="form-control"
+                  className="form-control"
                   onBlur={getInputValue}
                   id="searchByPhoneNumberBookings"
                   placeholder="Phone Number"
                 />
               </div>
-              <div class="mb-3 w-100 text-end">
+              <div className="mb-3 w-100 text-end">
                 <button
                   type="button"
-                  class="btn btn-primary"
-                  onClick={() => setchange((change) => !change)}
+                  className="btn btn-primary"
+                  
                 >
-                  <i class="bi bi-search p-2"></i>Search
+                  <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>
             </form>
           </div>
         </div>
-
-        <PatientList items={loadedPatients} />
       </div>
-    </>
+
+      {isLoading && (
+
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+      )}
+      {!isLoading && loadedPatients && <PatientList items={loadedPatients} />}
+    </React.Fragment>
   );
 };
 

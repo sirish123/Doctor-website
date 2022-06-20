@@ -6,7 +6,7 @@
 
 .lds-dual-ring:after {
   content: ' ';
-  display: block;
+  display: flex;
   width: 46px;
   height: 46px;
   margin: 1px;
