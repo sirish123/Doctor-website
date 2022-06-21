@@ -31,6 +31,7 @@ const BillingMainPage = (props) => {
     };
     sendRequest();
   }, [idChange, API_URL]);
+  
   return (
     <>
       <div className="center">

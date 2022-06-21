@@ -41,6 +41,7 @@ const PatientList = (props) => {
                 address={Patient.address}
                 number={Patient.number}
                 dateofbirth={Patient.dateofbirth}
+                onDelete = {props.onDelete}
               />
             ))}
           </table>

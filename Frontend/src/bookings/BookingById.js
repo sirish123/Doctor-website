@@ -105,13 +105,13 @@ const BookingById = () => {
         {customSwitch === true ? (
           <div>
             {isLoading && (
-              <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
+              <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
                 </div>
               </div>
             )}
-            <div class="d-flex justify-content-center mt-3">
+            <div className="d-flex justify-content-center mt-3">
               <h2>BOOKINGS BY DATE</h2>
             </div>
             {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} />}
@@ -120,13 +120,13 @@ const BookingById = () => {
         ) : (
           <div>
             {isLoading && (
-              <div class="d-flex justify-content-center">
-                <div class="spinner-border" role="status">
-                  <span class="visually-hidden">Loading...</span>
+              <div className="d-flex justify-content-center">
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
                 </div>
               </div>
             )}
-            <div class="d-flex justify-content-center mt-3">
+            <div className="d-flex justify-content-center mt-3">
               <h2>BOOKINGS BY NUMBER</h2>
             </div>
             {!isLoading && loadedBookings && <BookingList items={loadedBookings} />}

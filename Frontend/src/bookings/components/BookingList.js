@@ -37,6 +37,7 @@ const BookingList = (props) => {
                 uniqueid={Booking.uniqueid}
                 diagnosis={Booking.diagnosis}
                 name={Booking.name}
+                onDelete = {props.onDelete}
               />
             ))}
           </table>

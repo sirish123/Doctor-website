@@ -73,12 +73,12 @@ const Booking = () => {
 
   return (
     <React.Fragment>
-      <div class="row mt-3 p-2 justify-content-center text-center">
+      <div className="row mt-3 p-2 justify-content-center text-center">
         <ErrorModal error={error} onClear={clearError} />
         {isLoading && (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
         )}

@@ -22,7 +22,11 @@ function GetBooking() {
     fetchByDate();
   }, [sendRequest, bookingDate]);
 
-
+  const bookingDeletedHandler = deletedbookingId => {
+    setLoadedBookingsDate(prevbookings =>
+      prevbookings.filter(booking => booking.id !== deletedbookingId)
+    );
+  };
 
 
   return (
@@ -61,7 +65,7 @@ function GetBooking() {
             </div>
           </div>
         )}
-        {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} code={1} />}
+        {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} code={1} onDelete = {bookingDeletedHandler}/>}
       </div>
     </React.Fragment>
   );

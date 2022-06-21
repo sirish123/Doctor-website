@@ -24,6 +24,12 @@ const Patient = () => {
     fetchPatients();
   }, [sendRequest, patientId]);
 
+  const patientDeletedHandler = deletedpatientId => {
+    setLoadedPatients(prevpatients =>
+      prevpatients.filter(patient => patient.id !== deletedpatientId)
+    );
+  };
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -37,7 +43,7 @@ const Patient = () => {
                   type="tel"
                   className="form-control"
                   onBlur={getInputValue}
-                  id="searchByPhoneNumberBookings"
+                  id="searchByPhoneNumberpatients"
                   placeholder="Phone Number"
                 />
               </div>
@@ -64,7 +70,7 @@ const Patient = () => {
         </div>
 
       )}
-      {!isLoading && loadedPatients && <PatientList items={loadedPatients} />}
+      {!isLoading && loadedPatients && <PatientList items={loadedPatients} onDelete = {patientDeletedHandler}/>}
     </React.Fragment>
   );
 };

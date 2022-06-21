@@ -1,9 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../../shared/components/UIElements/Modal";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 import Button from "../../shared/components/FormElements/Button";
 
 const PatientItem = (props) => {
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  const showDeleteWarningHandler = () => {
+    setShowConfirmModal(true);
+  };
+
+  const cancelDeleteHandler = () => {
+    setShowConfirmModal(false);
+  };
+  const confirmDeleteHandler = async () => {
+    setShowConfirmModal(false);
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/patient/${props.id}`,
+        "DELETE"
+      );
+      props.onDelete(props.id);
+    } catch (err) { }
+  };
   return (
-    <>
+    <React.Fragment>
+      <Modal
+        show={showConfirmModal}
+        onCancel={cancelDeleteHandler}
+        header="Are you sure?"
+        footerClass="price-item__modal-actions"
+        footer={
+          <React.Fragment>
+            <Button inverse onClick={cancelDeleteHandler}>
+              CANCEL
+            </Button>
+            <Button danger onClick={confirmDeleteHandler}>
+              DELETE
+            </Button>
+          </React.Fragment>
+        }
+      >
+        <p>
+          Do you want to proceed and delete this place? Please note that it
+          can't be undone thereafter.
+        </p>
+      </Modal>
       <tr className="accordion-toggle align-middle record p-1">
         <td>{props.name}</td>
         <td>{props.number}</td>
@@ -12,9 +55,12 @@ const PatientItem = (props) => {
           <Button special={`/booking/${props.name}/${props.number}`}>
             <i className="bi bi-mouse p1"></i>
           </Button>
+          <button  onClick={showDeleteWarningHandler}>
+            <i class="bi bi-trash"></i>
+          </button>
         </td>
       </tr>
-    </>
+    </React.Fragment>
   );
 };
 
