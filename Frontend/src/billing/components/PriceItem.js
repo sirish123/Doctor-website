@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
 import { useHttpClient } from "../../shared/hooks/http-hook";
@@ -49,7 +49,7 @@ const PriceItem = (props) => {
         </p>
       </Modal>
 
-      <li className="price-item">
+      {/* <li className="price-item">
         <div className="accordion-item">
           <div className="accordion-header">
             <div className="d-flex row w-200 align-items-center text-center">
@@ -66,7 +66,33 @@ const PriceItem = (props) => {
             </div>
           </div>
         </div>
-      </li>
+      </li> */}
+
+      <tr className="align-middle">
+        <td>{props.treatmentName}</td>
+        <td>
+          <span>₹</span>
+          {props.price}
+        </td>
+        <td>
+          <Button
+            className="btn btn-danger align-middle"
+            special={`/update/${props.id}`}
+          >
+            <a href="/#" className="btn btn-primary me-2">
+              <i className="bi bi-arrow-clockwise p-1 m-1"></i>
+              <span className="fw-bold">Update</span>
+            </a>
+          </Button>
+
+          <button
+            className="btn btn-danger align-middle fw-bold"
+            onClick={showDeleteWarningHandler}
+          >
+            <i className="bi bi-trash3-fill p-1 m-1"></i>Delete
+          </button>
+        </td>
+      </tr>
     </React.Fragment>
   );
 };

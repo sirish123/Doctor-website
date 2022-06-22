@@ -5,7 +5,6 @@ import PriceItem from "./PriceItem";
 import "./PriceList.css";
 
 const PriceList = (props) => {
-  
   if (props.items.length === 0) {
     return (
       <div className="Price-list center">
@@ -18,33 +17,16 @@ const PriceList = (props) => {
 
   return (
     <>
-   
-      <ul className="price-details">
-        <div className="accordion-header">
-          <div className="d-flex row w-150 header-row text-center">
-            <span className="p-2 col-3">
-              <strong>
-              <i className="bi bi-file-medical p-2"></i>TreatmentName
-              </strong>
-            </span>
-            <span className="p-2 col-3">
-              <strong>
-              <i class="bi bi-cash"></i>Price
-              </strong>
-            </span>
-          </div>
-        </div>
+      <tbody>
         {props.items.map((Price) => (
           <PriceItem
             key={Price.id}
             id={Price.id}
-            price ={Price.price}
+            price={Price.price}
             treatmentName={Price.treatmentName}
           />
         ))}
-      
-      </ul>
-      <Button to={`/billing/update`}>Create</Button>
+      </tbody>
     </>
   );
 };
