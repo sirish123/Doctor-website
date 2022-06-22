@@ -62,5 +62,37 @@ const createPatient = async (req, res, next) => {
   res.status(201).json({ Patient: createdPatient });
 };
 
+const deletePatient = async (req, res, next) => {
+  const PatientId = req.params.pid;
+
+  let patient;
+  try {
+    patient = await Patient.findById(PatientId);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete Patient.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!patient) {
+    const error = new HttpError("Could not find Patient for this id.", 404);
+    return next(error);
+  }
+
+  try {
+    await patient.remove();
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete Patient.",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ message: "Deleted Patient." });
+};
+exports.deletePatient = deletePatient;
 exports.getPatientById = getPatientById;
 exports.createPatient = createPatient;

@@ -30,6 +30,6 @@ router.patch(
   bookingControllers.updateBooking
 );
 
-
+router.delete('/:bid', bookingControllers.deleteBooking);
 
 module.exports = router;

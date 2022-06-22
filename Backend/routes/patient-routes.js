@@ -15,5 +15,6 @@ router.post(
   ],
   patientControllers.createPatient
 );
+router.delete('/:pid', patientControllers.deletePatient);
 
 module.exports = router;

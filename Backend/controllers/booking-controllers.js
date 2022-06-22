@@ -153,7 +153,38 @@ const createBooking = async (req, res, next) => {
 
   res.status(201).json({ Booking: createdBooking });
 };
+const deleteBooking = async (req, res, next) => {
+  const BookingId = req.params.bid;
 
+  let booking;
+  try {
+    booking = await Booking.findById(BookingId);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete Booking.",
+      500
+    );
+    return next(error);
+  }
+
+  if (!booking) {
+    const error = new HttpError("Could not find Booking for this id.", 404);
+    return next(error);
+  }
+
+  try {
+    await booking.remove();
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete Booking.",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ message: "Deleted Booking." });
+};
+exports.deleteBooking = deleteBooking;
 exports.getBookingByNumber =getBookingByNumber;
 exports.getBookingByDate = getBookingByDate;
 exports.updateBooking = updateBooking;
