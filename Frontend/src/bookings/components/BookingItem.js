@@ -64,15 +64,16 @@ const BookingItem = (props) => {
         <td>{props.time}</td>
         <td>
           {props.code === 1 ? (
-            <Button special={`/booking/${props.id}`}>
+
+            <Button special={`/billing/invoice/${props.id}`}>
               <a href="/#" className="btn m-1">
                 <i className="bi bi-mouse p1"></i>
               </a>
             </Button>
           ) : (
-            <Button special={`/booking/${props.id}`}>
+            <Button special={`/billing/invoice/${props.id}`}>
               <a href="/#" className="btn m-1">
-                <i className="bi bi-credit-card p1"></i>
+                <i className="bi bi-mouse p1"></i>
               </a>
             </Button>
           )}
@@ -99,7 +100,7 @@ const BookingItem = (props) => {
         >
           <div>
             <div className="text-start p-3">
-              <p className="diagonis text-muted text-center">{props.diagnosis}</p>
+              <p className="diagonis text-muted text-center">{props.paymentamount}</p>
             </div>
           </div>
         </td>

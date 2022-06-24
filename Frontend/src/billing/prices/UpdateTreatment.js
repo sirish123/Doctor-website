@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
-
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
@@ -40,7 +38,6 @@ const UpdateTreatment = () => {
           `http://localhost:5000/api/price/update/${priceId}`
         );
         setLoadedprice(responseData.price);
-        //console.log(responseData.price);
         setFormData(
           {
             treatmentName: {
@@ -73,7 +70,7 @@ const UpdateTreatment = () => {
           "Content-Type": "application/json",
         }
       );
-      history.push("/"); //+ auth.userId + '/prices'
+      history.push("/");
     } catch (err) { }
   };
 
@@ -81,36 +78,43 @@ const UpdateTreatment = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div class="row mt-3 p-2 justify-content-center text-center">
-      {!isLoading && loadedprice && (
-        <form className="booking-form" onSubmit={priceUpdateSubmitHandler}>
-          <Input
-            id="treatmentName"
-            element="input"
-            type="text"
-            label="treatmentName"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid treatmentName."
-            onInput={inputHandler}
-            initialValue={loadedprice.treatmentName}
-            initialValid={true}
-          />
-          <Input
-            id="price"
-            element="input"
-            type="number"
-            label="price"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid price (min. 5 characters)."
-            onInput={inputHandler}
-            initialValue={loadedprice.price}
-            initialValid={true}
-          />
+        {isLoading && (
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
+        {!isLoading && loadedprice && (
+          <form className="booking-form" onSubmit={priceUpdateSubmitHandler}>
+            <Input
+              id="treatmentName"
+              element="input"
+              type="text"
+              label="treatmentName"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter a valid treatmentName."
+              onInput={inputHandler}
+              initialValue={loadedprice.treatmentName}
+              initialValid={true}
+            />
+            <Input
+              id="price"
+              element="input"
+              type="number"
+              label="price"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter a valid price (min. 5 characters)."
+              onInput={inputHandler}
+              initialValue={loadedprice.price}
+              initialValid={true}
+            />
 
-          <Button type="submit" disabled={!formState.isValid}>
-            Update price
-          </Button>
-        </form>
-      )}
+            <Button type="submit" disabled={!formState.isValid}>
+              Update price
+            </Button>
+          </form>
+        )}
       </div>
     </React.Fragment>
   );

@@ -61,7 +61,6 @@ const MainNavbar = () => {
                 Book
               </a>
             </li>
-            
             <li className="nav-item">
               <a className="nav-link" id="searchHistory" href="/getprice">
                 Treatments

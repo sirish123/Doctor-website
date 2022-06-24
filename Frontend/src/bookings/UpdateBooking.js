@@ -3,7 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
-
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
@@ -93,7 +92,7 @@ const UpdateBooking = () => {
             <Input
               id="paymentamount"
               element="input"
-              type="text"
+              type="number"
               label="Payment Amount"
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a valid paymentamount."

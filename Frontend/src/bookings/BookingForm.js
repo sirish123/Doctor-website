@@ -7,7 +7,6 @@ import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
-  VALIDATOR_DATEOFBIRTH,
   VALIDATOR_TIME,
 } from "../shared/util/validators";
 import { useForm } from "../shared/hooks/form-hook";
@@ -30,7 +29,7 @@ const Booking = () => {
         isValid: false,
       },
       paymentamount: {
-        value: "To Be Updated",
+        value: 0,
         isValid: true,
       },
       diagnosis: {
@@ -70,7 +69,6 @@ const Booking = () => {
       history.push("/");
     } catch (err) { }
   };
-
   return (
     <React.Fragment>
       <div className="row mt-3 p-2 justify-content-center text-center">
@@ -112,7 +110,7 @@ const Booking = () => {
               element="input"
               type="date"
               label="Date"
-              validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATEOFBIRTH()]}
+              validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a valid date."
               onInput={inputHandler}
             />

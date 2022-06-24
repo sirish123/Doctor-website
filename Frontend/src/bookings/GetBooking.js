@@ -65,7 +65,7 @@ function GetBooking() {
             </div>
           </div>
         )}
-        {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} code={1} onDelete = {bookingDeletedHandler}/>}
+        {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} code={0} onDelete = {bookingDeletedHandler}/>}
       </div>
     </React.Fragment>
   );

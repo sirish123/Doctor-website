@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
 import PriceItem from "./PriceItem";
 import "./PriceList.css";
@@ -7,7 +6,7 @@ import "./PriceList.css";
 const PriceList = (props) => {
   if (props.items.length === 0) {
     return (
-      <div className="Price-list center">
+      <div className="Price-list">
         <Card>
           <h3>No Prices found</h3>
         </Card>

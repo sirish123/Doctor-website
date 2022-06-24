@@ -14,11 +14,11 @@ import GetBooking from "./bookings/GetBooking";
 import BookingById from "./bookings/BookingById";
 import UpdateBooking from "./bookings/UpdateBooking";
 import Navbar from "./shared/components/Navigation/Navbar";
-import BillingMainPage from "./billing/BillingMainPage";
 import CreateTreatment from "./billing/prices/CreateTreatment";
 import UpdateTreatment from "./billing/prices/UpdateTreatment";
 import FetchTreatment from "./billing/prices/FetchTreatment";
-import Testing from "./billing/prices/Testing";
+import BillingPage from "./billing/prices/BillingPage";
+import Revenue from "./revenue/Revenue";
 
 const App = () => {
   return (
@@ -29,14 +29,14 @@ const App = () => {
           <Route path="/" exact>
             <GetBooking />
           </Route>
-          <Route path="/testing" exact>
-            <Testing />
+          <Route path="/revenue" exact>
+            <Revenue />
+          </Route>
+          <Route path="/billing/invoice/:sid" exact>
+           <BillingPage/>
           </Route>
           <Route path="/book" exact>
             <Patient />
-          </Route>
-          <Route path="/billing" exact>
-            <BillingMainPage />
           </Route>
           <Route path="/newpatient" exact>
             <NewPatient />

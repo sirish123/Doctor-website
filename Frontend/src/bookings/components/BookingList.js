@@ -34,6 +34,7 @@ const BookingList = (props) => {
                 id={Booking.id}
                 time={Booking.time}
                 date={Booking.date}
+                paymentamount={Booking.paymentamount}
                 uniqueid={Booking.uniqueid}
                 diagnosis={Booking.diagnosis}
                 name={Booking.name}
