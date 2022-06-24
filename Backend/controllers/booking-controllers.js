@@ -2,8 +2,7 @@ const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const Booking = require("../models/bookingData");
 
-const getBookingById = async (req, res, next) => 
-{
+const getBookingById = async (req, res, next) => {
   const bookingId = req.params.bid;
 
   let booking;
@@ -25,15 +24,15 @@ const getBookingById = async (req, res, next) =>
     return next(error);
   }
 
-  res.json({ booking:booking.toObject({ getters: true }) });
+  res.json({ booking: booking.toObject({ getters: true }) });
 };
-const getBookingByNumber = async (req, res, next) => 
-{
+const getBookingByNumber = async (req, res, next) => {
   const numberid = req.params.did;
-
   let booking;
   try {
-    booking = await Booking.find({ uniqueid : numberid });
+
+    booking = await Booking.find({ uniqueid: numberid }
+    );
   } catch (err) {
     const error = new HttpError(
       "Something went wrong could not find Booking",
@@ -54,14 +53,47 @@ const getBookingByNumber = async (req, res, next) =>
     booking: booking.map((booking) => booking.toObject({ getters: true })),
   });
 };
+const getBookingByRange = async (req, res, next) => {
+  const date1 = req.params.did;
+  const date2 = req.params.vid
+  let booking;
+  try {
 
-const getBookingByDate = async (req, res, next) => 
-{
+    booking = await Booking.find({
+      date:
+      {
+        $gte: date1,
+        $lte:date2,
+      }
+    }
+    );
+  } catch (err) {
+    const error = new HttpError(
+      `Something went wrong could not find Booking`,
+      500
+    );
+    return next(error);
+  }
+
+  if (!booking) {
+    const error = new HttpError(
+      "Could not find a Booking for the provided id.",
+      404
+    );
+    return next(error);
+  }
+
+  res.json({
+    booking: booking.map((booking) => booking.toObject({ getters: true })),
+  });
+};
+
+const getBookingByDate = async (req, res, next) => {
   const dateId = req.params.did;
 
   let booking;
   try {
-    booking = await Booking.find({ date : dateId });
+    booking = await Booking.find({ date: dateId });
   } catch (err) {
     const error = new HttpError(
       "Something went wrong could not find Booking",
@@ -117,7 +149,7 @@ const updateBooking = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(200).json({ booking:booking.toObject({ getters: true }) });
+  res.status(200).json({ booking: booking.toObject({ getters: true }) });
 };
 
 //Post request code to create a new object in the database
@@ -130,7 +162,7 @@ const createBooking = async (req, res, next) => {
     );
   }
 
-  const { uniqueid, diagnosis,name, paymentamount, date, time } = req.body;
+  const { uniqueid, diagnosis, name, paymentamount, date, time } = req.body;
 
   const createdBooking = new Booking({
     uniqueid,
@@ -184,8 +216,9 @@ const deleteBooking = async (req, res, next) => {
 
   res.status(200).json({ message: "Deleted Booking." });
 };
+exports.getBookingByRange = getBookingByRange;
 exports.deleteBooking = deleteBooking;
-exports.getBookingByNumber =getBookingByNumber;
+exports.getBookingByNumber = getBookingByNumber;
 exports.getBookingByDate = getBookingByDate;
 exports.updateBooking = updateBooking;
 exports.getBookingById = getBookingById;

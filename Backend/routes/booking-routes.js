@@ -10,6 +10,8 @@ router.get('/date/:did', bookingControllers.getBookingByDate);
 
 router.get('/number/:did', bookingControllers.getBookingByNumber);
 
+router.get('/revenue/:did/:vid', bookingControllers.getBookingByRange);
+
 router.post(
   "/",
   [
