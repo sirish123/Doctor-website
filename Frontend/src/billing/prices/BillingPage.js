@@ -6,14 +6,12 @@ import { useReactToPrint } from "react-to-print";
 import { useForm } from "../../shared/hooks/form-hook";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
-import "../../bookings/BookingForm.css"
+import "../../bookings/BookingForm.css";
 import {
   VALIDATOR_REQUIRE,
-  VALIDATOR_MINLENGTH,
   VALIDATOR_TIME,
 } from "../../shared/util/validators";
 const BillingPage = () => {
-
   const [treatmentPrice, settreatmentPrice] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
 
@@ -63,8 +61,7 @@ const BillingPage = () => {
         }),
         { "Content-Type": "application/json" }
       );
-
-    } catch (err) { }
+    } catch (err) {}
   };
   //----------------------------------------------------------------------------------------------------------------------//
   const handlePrint = useReactToPrint({
@@ -80,7 +77,7 @@ const BillingPage = () => {
         console.log(responseData.price);
         settreatmentPrice(responseData.price);
         setCheckedState(new Array(responseData.price.length).fill(false));
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchTreatment();
   }, [sendRequest]);
@@ -91,9 +88,9 @@ const BillingPage = () => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/booking/${BookingId}`
         );
-        console.log(responseData.booking)
+        console.log(responseData.booking);
         setBookingInfo(responseData.booking);
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchBooking();
   }, [sendRequest]);
@@ -112,9 +109,8 @@ const BillingPage = () => {
           "Content-Type": "application/json",
         }
       );
-    } catch (err) { }
+    } catch (err) {}
   };
-
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -160,7 +156,6 @@ const BillingPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-
                   {isLoading && (
                     <div className="d-flex justify-content-center">
                       <div className="spinner-border" role="status">
@@ -169,10 +164,10 @@ const BillingPage = () => {
                     </div>
                   )}
 
-                  {!isLoading && treatmentPrice &&
+                  {!isLoading &&
+                    treatmentPrice &&
                     treatmentPrice.map(({ treatmentName, price }, index) => {
                       return (
-
                         <tr className="align-middle">
                           <td>
                             <div className="form-check">
@@ -186,7 +181,6 @@ const BillingPage = () => {
                                 onChange={() => handleOnChange(index)}
                               />
                             </div>
-
                           </td>
 
                           <td>{treatmentName}</td>
@@ -196,14 +190,11 @@ const BillingPage = () => {
                           </td>
                         </tr>
                       );
-                    })
-                  }
-
+                    })}
                 </tbody>
               </table>
               <div>
                 <form className="booking-form" onSubmit={placeSubmitHandler}>
-
                   <Input
                     id="date"
                     element="input"
@@ -256,7 +247,10 @@ const BillingPage = () => {
                         <table className="float-end">
                           <tr>
                             <td>
-                              <button onClick={handlePrint} className="btn btn-outline-danger m-1">
+                              <button
+                                onClick={handlePrint}
+                                className="btn btn-outline-danger m-1"
+                              >
                                 Print
                               </button>
                               <button className="btn btn-outline-danger">
@@ -269,11 +263,11 @@ const BillingPage = () => {
                       <table className="table table-borderless">
                         <tr>
                           <td className="fw-bold fs-6">Name</td>
-                          <td>{bookingInfo.name || ''}</td>
+                          <td>{bookingInfo.name || ""}</td>
                         </tr>
                         <tr>
                           <td className="fw-bold fs-6">Phone Number</td>
-                          <td>{bookingInfo.uniqueid || ''}</td>
+                          <td>{bookingInfo.uniqueid || ""}</td>
                         </tr>
                       </table>
                     </div>
@@ -317,15 +311,22 @@ const BillingPage = () => {
                   <span className="fs-6 p-2">
                     <span className="p-2 border border-1 border-dark">
                       <span className="fw-bold">Next Appointment:</span>
-                      {
-                        " "+
+                    </span>
+                  </span>
+
+                  <span className="fw-bold">
+                    Date:
+                    {" " +
                       formState.inputs.date.value.substring(8, 10) +
                       "-" +
                       formState.inputs.date.value.substring(5, 7) +
                       "-" +
-                      formState.inputs.date.value.substring(0, 4)
-                      }
-                    </span>
+                      formState.inputs.date.value.substring(0, 4)}
+                  </span>
+
+                  <span className="fw-bold">
+                    Time:
+                    {formState.inputs.time.value}
                   </span>
                 </div>
                 <div className="row justify-content-center mb-3">
@@ -342,8 +343,8 @@ const BillingPage = () => {
                       </div>
                       <div className="col-12">
                         <span>
-                          <span className="fw-bold pe-1">Address:</span>Somewhere
-                          in Nowhere far far away.
+                          <span className="fw-bold pe-1">Address:</span>
+                          Somewhere in Nowhere far far away.
                         </span>
                       </div>
                     </div>
@@ -356,5 +357,5 @@ const BillingPage = () => {
       </div>
     </React.Fragment>
   );
-}
+};
 export default BillingPage;

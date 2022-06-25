@@ -9,25 +9,29 @@ function GetBooking() {
   const [bookingDate, setBookingDate] = useState(
     new Date().toISOString().slice(0, 10)
   );
-
+  const calculateTotal = (props) => {
+    props.sort(function (a, b) {
+      return a.time.localeCompare(b.time);
+    });
+  };
   useEffect(() => {
     const fetchByDate = async () => {
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/booking/date/${bookingDate}`
         );
+        calculateTotal(responseData.booking);
         setLoadedBookingsDate(responseData.booking);
       } catch (err) { }
     };
     fetchByDate();
   }, [sendRequest, bookingDate]);
 
-  const bookingDeletedHandler = deletedbookingId => {
-    setLoadedBookingsDate(prevbookings =>
-      prevbookings.filter(booking => booking.id !== deletedbookingId)
+  const bookingDeletedHandler = (deletedbookingId) => {
+    setLoadedBookingsDate((prevbookings) =>
+      prevbookings.filter((booking) => booking.id !== deletedbookingId)
     );
   };
-
 
   return (
     <React.Fragment>
@@ -47,11 +51,7 @@ function GetBooking() {
                 />
               </div>
               <div className="mb-3 w-100 text-end">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                 
-                >
+                <button type="button" className="btn btn-primary">
                   <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>
@@ -65,7 +65,13 @@ function GetBooking() {
             </div>
           </div>
         )}
-        {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} code={0} onDelete = {bookingDeletedHandler}/>}
+        {!isLoading && loadedBookingsDate && (
+          <BookingList
+            items={loadedBookingsDate}
+            code={0}
+            onDelete={bookingDeletedHandler}
+          />
+        )}
       </div>
     </React.Fragment>
   );

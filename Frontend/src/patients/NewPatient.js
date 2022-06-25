@@ -6,7 +6,6 @@ import Button from "../shared/components/FormElements/Button";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
-  VALIDATOR_DATEOFBIRTH,
 } from "../shared/util/validators";
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
@@ -113,7 +112,7 @@ const NewPatient = () => {
               element="input"
               type="date"
               label="Date Of Birth"
-              validators={[VALIDATOR_REQUIRE(), VALIDATOR_DATEOFBIRTH()]}
+              validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter the DateOfBirth."
               onInput={inputHandler}
             />

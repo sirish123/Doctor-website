@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "./PriceItem.css";
 
@@ -23,10 +24,11 @@ const PriceItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-    } catch (err) {}
+    } catch (err) { }
   };
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
@@ -44,31 +46,18 @@ const PriceItem = (props) => {
         }
       >
         <p>
-          Do you want to proceed and delete this place? Please note that it
-          can't be undone thereafter.
+          Do you want to proceed and Delete this Item?
+          Please note that it can't be undone thereafter.
         </p>
       </Modal>
-
-      {/* <li className="price-item">
-        <div className="accordion-item">
-          <div className="accordion-header">
-            <div className="d-flex row w-200 align-items-center text-center">
-              <span className="p-2 col-3 overflow-auto">
-                {props.treatmentName}
-              </span>
-              <span className="p-2 col-3 overflow-auto">{props.price}</span>
-              <span className="p-2 col-3 overflow-auto">
-                <Button to={`/update/${props.id}`}>Update</Button>
-                <Button danger onClick={showDeleteWarningHandler}>
-                  DELETE
-                </Button>
-              </span>
-            </div>
+      {isLoading && (
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
         </div>
-      </li> */}
-
-      <tr className="align-middle">
+      )}
+      {!isLoading && (<tr className="align-middle">
         <td>{props.treatmentName}</td>
         <td>
           <span>₹</span>
@@ -92,7 +81,7 @@ const PriceItem = (props) => {
             <i className="bi bi-trash3-fill p-1 m-1"></i>Delete
           </button>
         </td>
-      </tr>
+      </tr>)}
     </React.Fragment>
   );
 };

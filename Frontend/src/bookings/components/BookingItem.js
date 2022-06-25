@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "./BookingItem.css";
 
@@ -29,6 +30,7 @@ const BookingItem = (props) => {
 
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
@@ -46,11 +48,22 @@ const BookingItem = (props) => {
         }
       >
         <p>
-          Do you want to proceed and delete this booking? Please note that it
-          can't be undone thereafter.
+          Do you want to proceed and delete this Booking?
+          Please note that it can't be undone thereafter.
         </p>
       </Modal>
-      <tr className="accordion-toggle align-middle record">
+      {isLoading && (
+
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+      )}
+       {!isLoading && 
+       (<tr className="accordion-toggle align-middle record">
+        <td>{props.paymentamount !== 0 ? (<i class="bi bi-check-circle"></i>) : (<i class="bi bi-activity"></i>)}</td>
         <td>{props.name}</td>
         <td>{props.uniqueid}</td>
         <td>
@@ -63,21 +76,12 @@ const BookingItem = (props) => {
         </td>
         <td>{props.time}</td>
         <td>
-          {props.code === 1 ? (
-
-            <Button special={`/billing/invoice/${props.id}`}>
-              <a href="/#" className="btn m-1">
-                <i className="bi bi-mouse p1"></i>
-              </a>
-            </Button>
-          ) : (
-            <Button special={`/billing/invoice/${props.id}`}>
-              <a href="/#" className="btn m-1">
-                <i className="bi bi-mouse p1"></i>
-              </a>
-            </Button>
-          )}
-          <button  onClick={showDeleteWarningHandler}>
+          <Button special={`/billing/invoice/${props.id}`}>
+            <a href="/#" className="btn m-1">
+              <i className="bi bi-mouse p1"></i>
+            </a>
+          </Button>
+          <button onClick={showDeleteWarningHandler}>
             <i class="bi bi-trash"></i>
           </button>
           <a
@@ -90,7 +94,7 @@ const BookingItem = (props) => {
             <i className="bi bi-eye"></i>
           </a>
         </td>
-      </tr>
+      </tr>)}
 
       <tr>
         <td

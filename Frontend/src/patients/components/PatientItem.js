@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../../shared/components/UIElements/Modal";
 import { useHttpClient } from "../../shared/hooks/http-hook";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import Button from "../../shared/components/FormElements/Button";
 
 const PatientItem = (props) => {
@@ -26,6 +27,7 @@ const PatientItem = (props) => {
   };
   return (
     <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
@@ -47,7 +49,16 @@ const PatientItem = (props) => {
           can't be undone thereafter.
         </p>
       </Modal>
-      <tr className="accordion-toggle align-middle record p-1">
+      {isLoading && (
+
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+      )}
+      {!isLoading &&(<tr className="accordion-toggle align-middle record p-1">
         <td>{props.name}</td>
         <td>{props.number}</td>
         <td>{props.dateofbirth}</td>
@@ -55,11 +66,11 @@ const PatientItem = (props) => {
           <Button special={`/booking/${props.name}/${props.number}`}>
             <i className="bi bi-mouse p1"></i>
           </Button>
-          <button  onClick={showDeleteWarningHandler}>
+          <button onClick={showDeleteWarningHandler}>
             <i class="bi bi-trash"></i>
           </button>
         </td>
-      </tr>
+      </tr>)}
     </React.Fragment>
   );
 };

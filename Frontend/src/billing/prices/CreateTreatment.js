@@ -2,18 +2,17 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
 } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
-
 import "../../bookings/BookingForm.css";
 
 const CreateTreatment = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  //console.log(BookingId);
   const [formState, inputHandler] = useForm(
     {
       searchId: {
@@ -48,12 +47,20 @@ const CreateTreatment = () => {
         { "Content-Type": "application/json" }
       );
       history.push("/");
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
     <React.Fragment>
-      <form className="booking-form" onSubmit={placeSubmitHandler}>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
+       {!isLoading && (<form className="booking-form" onSubmit={placeSubmitHandler}>
         <Input
           id="treatmentName"
           element="input"
@@ -62,7 +69,7 @@ const CreateTreatment = () => {
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a treatmentName."
           onInput={inputHandler}
-          
+
         />
 
         <Input
@@ -78,7 +85,7 @@ const CreateTreatment = () => {
         <Button type="submit" disabled={!formState.isValid}>
           Add Treatment
         </Button>
-      </form>
+      </form>)}
     </React.Fragment>
   );
 };
