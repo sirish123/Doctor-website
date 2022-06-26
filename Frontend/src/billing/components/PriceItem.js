@@ -24,7 +24,7 @@ const PriceItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-    } catch (err) { }
+    } catch (err) {}
   };
   return (
     <React.Fragment>
@@ -46,8 +46,8 @@ const PriceItem = (props) => {
         }
       >
         <p>
-          Do you want to proceed and Delete this Item?
-          Please note that it can't be undone thereafter.
+          Do you want to proceed and Delete this Item? Please note that it can't
+          be undone thereafter.
         </p>
       </Modal>
       {isLoading && (
@@ -57,31 +57,33 @@ const PriceItem = (props) => {
           </div>
         </div>
       )}
-      {!isLoading && (<tr className="align-middle">
-        <td>{props.treatmentName}</td>
-        <td>
-          <span>₹</span>
-          {props.price}
-        </td>
-        <td>
-          <Button
-            className="btn btn-danger align-middle"
-            special={`/update/${props.id}`}
-          >
-            <a href="/#" className="btn btn-primary me-2">
-              <i className="bi bi-arrow-clockwise p-1 m-1"></i>
-              <span className="fw-bold">Update</span>
-            </a>
-          </Button>
+      {!isLoading && (
+        <tr className="align-middle">
+          <td>{props.treatmentName}</td>
+          <td>
+            <span>₹</span>
+            {props.price}
+          </td>
+          <td>
+            <Button
+              className="btn btn-danger align-middle"
+              special={`/update/${props.id}`}
+            >
+              <a href="/#" className="btn btn-primary me-2">
+                <i className="bi bi-arrow-clockwise p-1 m-1"></i>
+                <span className="fw-bold">Update</span>
+              </a>
+            </Button>
 
-          <button
-            className="btn btn-danger align-middle fw-bold"
-            onClick={showDeleteWarningHandler}
-          >
-            <i className="bi bi-trash3-fill p-1 m-1"></i>Delete
-          </button>
-        </td>
-      </tr>)}
+            <button
+              className="btn btn-danger align-middle fw-bold"
+              onClick={showDeleteWarningHandler}
+            >
+              <i className="bi bi-trash3-fill p-1 m-1"></i>Delete
+            </button>
+          </td>
+        </tr>
+      )}
     </React.Fragment>
   );
 };

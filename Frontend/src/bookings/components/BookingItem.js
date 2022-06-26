@@ -25,7 +25,7 @@ const BookingItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-    } catch (err) { }
+    } catch (err) {}
   };
 
   return (
@@ -48,53 +48,64 @@ const BookingItem = (props) => {
         }
       >
         <p>
-          Do you want to proceed and delete this Booking?
-          Please note that it can't be undone thereafter.
+          Do you want to proceed and delete this Booking? Please note that it
+          can't be undone thereafter.
         </p>
       </Modal>
       {isLoading && (
-
         <div class="d-flex justify-content-center">
           <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
-
       )}
-       {!isLoading && 
-       (<tr className="accordion-toggle align-middle record">
-        <td>{props.paymentamount !== 0 ? (<i class="bi bi-check-circle"></i>) : (<i class="bi bi-activity"></i>)}</td>
-        <td>{props.name}</td>
-        <td>{props.uniqueid}</td>
-        <td>
-          {" "}
-          {props.date.substring(8, 10) +
-            "-" +
-            props.date.substring(5, 7) +
-            "-" +
-            props.date.substring(0, 4)}
-        </td>
-        <td>{props.time}</td>
-        <td>
-          <Button special={`/billing/invoice/${props.id}`}>
-            <a href="/#" className="btn m-1">
-              <i className="bi bi-mouse p1"></i>
+      {!isLoading && (
+        <tr className="accordion-toggle align-middle record">
+          <td>
+            {props.paymentamount !== 0 ? (
+              <i class="bi bi-check-circle-fill text-success"></i>
+            ) : (
+              <i class="bi bi-activity text-primary"></i>
+            )}
+          </td>
+          <td>{props.name}</td>
+          <td>{props.uniqueid}</td>
+          <td>
+            {" "}
+            {props.date.substring(8, 10) +
+              "-" +
+              props.date.substring(5, 7) +
+              "-" +
+              props.date.substring(0, 4)}
+          </td>
+          <td>{props.time}</td>
+          <td>
+            <Button special={`/billing/invoice/${props.id}`}>
+              <a href="/#" className="btn m-1">
+                <i class="bi bi-receipt-cutoff text-info"></i>
+              </a>
+            </Button>
+          </td>
+          <td>
+            <a
+              href="/#"
+              type="button"
+              className="btn m-1"
+              data-bs-toggle="collapse"
+              data-bs-target={"#patient" + id}
+            >
+              <i className="bi bi-eye"></i>
             </a>
-          </Button>
-          <button onClick={showDeleteWarningHandler}>
-            <i class="bi bi-trash"></i>
-          </button>
-          <a
-            href="/#"
-            type="button"
-            className="btn m-1"
-            data-bs-toggle="collapse"
-            data-bs-target={"#patient" + id}
-          >
-            <i className="bi bi-eye"></i>
-          </a>
-        </td>
-      </tr>)}
+          </td>
+          <td>
+            <button className="p-2 border-0" onClick={showDeleteWarningHandler}>
+              <a href="/#" className="btn m-1">
+                <i className="bi bi-trash text-danger"></i>
+              </a>
+            </button>
+          </td>
+        </tr>
+      )}
 
       <tr>
         <td
@@ -104,7 +115,9 @@ const BookingItem = (props) => {
         >
           <div>
             <div className="text-start p-3">
-              <p className="diagonis text-muted text-center">{props.paymentamount}</p>
+              <p className="diagonis text-muted text-center">
+                {props.paymentamount}
+              </p>
             </div>
           </div>
         </td>

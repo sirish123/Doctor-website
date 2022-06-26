@@ -6,7 +6,6 @@ import {
   Switch,
 } from "react-router-dom";
 
-
 import Patient from "./patients/Patient";
 import NewPatient from "./patients/NewPatient";
 import BookingForm from "./bookings/BookingForm";
@@ -20,6 +19,7 @@ import FetchTreatment from "./billing/prices/FetchTreatment";
 import BillingPage from "./billing/prices/BillingPage";
 import Revenue from "./revenue/Revenue";
 
+import Footer from "./shared/components/Navigation/Footer";
 const App = () => {
   return (
     <Router>
@@ -33,7 +33,7 @@ const App = () => {
             <Revenue />
           </Route>
           <Route path="/billing/invoice/:sid" exact>
-           <BillingPage/>
+            <BillingPage />
           </Route>
           <Route path="/book" exact>
             <Patient />
@@ -62,6 +62,7 @@ const App = () => {
           <Redirect to="/" />
         </Switch>
       </main>
+      <Footer />
     </Router>
   );
 };

@@ -7,9 +7,9 @@ const BookingList = (props) => {
   if (props.items.length === 0) {
     return (
       <div className="booking-list center">
-        <Card>
-          <h3>No Bookings found</h3>
-        </Card>
+        <h4 className="p-3 w-100 col-4 rounded-2 shadow-sm border bg-white text-center roboto">
+          No Booking Found
+        </h4>
       </div>
     );
   }
@@ -21,11 +21,14 @@ const BookingList = (props) => {
           <table class="table table-condensed recordTable">
             <thead>
               <tr>
+                <th>Status</th>
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Actions</th>
+                <th>Bill</th>
+                <th>View</th>
+                <th>Delete</th>
               </tr>
             </thead>
             {props.items.map((Booking) => (
@@ -38,7 +41,7 @@ const BookingList = (props) => {
                 uniqueid={Booking.uniqueid}
                 diagnosis={Booking.diagnosis}
                 name={Booking.name}
-                onDelete = {props.onDelete}
+                onDelete={props.onDelete}
               />
             ))}
           </table>

@@ -17,8 +17,7 @@ function FetchTreatment() {
         );
         console.log(responseData.price);
         setloadedPrices(responseData.price);
-
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchTreatment();
   }, [sendRequest]);
@@ -29,7 +28,17 @@ function FetchTreatment() {
       <div className="container-fluid">
         <div className="row mt-3 p-2 justify-content-center text-center">
           <div className="col-lg-10 p-0 shadow-sm recordHolder">
-            <table className="table table-condensed recordTable">
+            <table className="table table-condensed recordTable table-borderless position-relative">
+              {isLoading && (
+                <div
+                  style={{ zIndex: 10000 }}
+                  class="position-fixed start-50 top-50 justify-content-center"
+                >
+                  <div class="spinner-border p-4" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              )}
               <thead>
                 <tr>
                   <th>Treatment</th>
@@ -37,13 +46,7 @@ function FetchTreatment() {
                   <th>Actions</th>
                 </tr>
               </thead>
-              {isLoading && (
-                <div class="d-flex justify-content-center">
-                  <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </div>
-              )}
+
               {!isLoading && loadedPrices && <PriceList items={loadedPrices} />}
             </table>
           </div>

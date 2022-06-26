@@ -54,3 +54,14 @@ body{
 .modal .modal-footer button{
   font-family: 'Ubuntu', sans-serif;
 }
+
+/* Hidden On Print */
+@media print {
+  .hidden-print{
+    visibility: hidden;
+  }
+}
+
+.roboto{
+  font-family: 'Roboto Slab', serif !important;
+}

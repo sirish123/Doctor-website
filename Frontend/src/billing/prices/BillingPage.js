@@ -145,12 +145,15 @@ const BillingPage = () => {
       <ErrorModal error={error} onClear={clearError} />
       <div className="container-fluid mt-5">
         <div className="row g-3 ms-2 me-2">
-          <div className="col-lg-4 p-3 bg-white rounded shadow-sm my-auto">
-            <div className="row p-3">
+          <div className="col-lg-4 p-3 my-auto">
+            <h4 className="fw-bold text-center mb-2">Treatment & Price</h4>
+            <div className="row p-3 mb-4 shadow-sm rounded bg-white">
               <table className="table">
                 <thead>
-                  <tr>
-                    <th scope="col"></th>
+                  <tr className="align-middle">
+                    <th scope="col">
+                      <i class="bi bi-clipboard-check text-success"></i>
+                    </th>
                     <th scope="col">Treatment</th>
                     <th scope="col">Price</th>
                   </tr>
@@ -193,44 +196,50 @@ const BillingPage = () => {
                     })}
                 </tbody>
               </table>
-              <div>
-                <form className="booking-form" onSubmit={placeSubmitHandler}>
-                  <Input
-                    id="date"
-                    element="input"
-                    type="date"
-                    label="Date"
-                    validators={[VALIDATOR_REQUIRE()]}
-                    errorText="Please enter a valid date."
-                    onInput={inputHandler}
-                  />
+              <div className="row text-end">
+                <div className="col">
+                  <button
+                    className="btn border border-0"
+                    onClick={BookingUpdateSubmitHandler}
+                  >
+                    <a href="/#" className="btn btn-success">
+                      Update
+                    </a>
+                  </button>
+                </div>
+              </div>
+            </div>
 
-                  <Input
-                    id="time"
-                    element="input"
-                    label="Time"
-                    type="time"
-                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
-                    errorText="Please enter a time in the field."
-                    onInput={inputHandler}
-                  />
+            <div className="row">
+              <form
+                className="booking-form w-100"
+                onSubmit={placeSubmitHandler}
+              >
+                <Input
+                  id="date"
+                  element="input"
+                  type="date"
+                  label="Date"
+                  validators={[VALIDATOR_REQUIRE()]}
+                  errorText="Please enter a valid date."
+                  onInput={inputHandler}
+                />
+
+                <Input
+                  id="time"
+                  element="input"
+                  label="Time"
+                  type="time"
+                  validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
+                  errorText="Please enter a time in the field."
+                  onInput={inputHandler}
+                />
+                <div className="col-12 text-end">
                   <Button type="submit" disabled={!formState.isValid}>
                     ADD booking
                   </Button>
-                </form>
-              </div>
-            </div>
-            <div className="row text-end">
-              <div className="col">
-                <button
-                  className="btn border border-0"
-                  onClick={BookingUpdateSubmitHandler}
-                >
-                  <a href="/#" className="btn btn-danger">
-                    Update
-                  </a>
-                </button>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
 
@@ -241,7 +250,7 @@ const BillingPage = () => {
                   <h2 className="fw-bold">INVOICE</h2>
                 </div>
                 <div className="row justify-content-end">
-                  <div className="col-lg-4">
+                  <div className="col-8">
                     <div className="row p-2 text-end pe-5">
                       <div className="col">
                         <table className="float-end">
@@ -249,12 +258,9 @@ const BillingPage = () => {
                             <td>
                               <button
                                 onClick={handlePrint}
-                                className="btn btn-outline-danger m-1"
+                                className="btn btn-outline-danger m-1 hidden-print"
                               >
                                 Print
-                              </button>
-                              <button className="btn btn-outline-danger">
-                                Download
                               </button>
                             </td>
                           </tr>
@@ -262,11 +268,13 @@ const BillingPage = () => {
                       </div>
                       <table className="table table-borderless">
                         <tr>
-                          <td className="fw-bold fs-6">Name</td>
+                          <td className="fw-bold fs-6 text-end">Name:</td>
                           <td>{bookingInfo.name || ""}</td>
                         </tr>
                         <tr>
-                          <td className="fw-bold fs-6">Phone Number</td>
+                          <td className="fw-bold fs-6 text-end">
+                            Phone Number:
+                          </td>
                           <td>{bookingInfo.uniqueid || ""}</td>
                         </tr>
                       </table>
@@ -275,7 +283,9 @@ const BillingPage = () => {
                 </div>
                 <div className="row p-3 mb-3  rounded-3">
                   <div className="col-12">
-                    <h4 className="fw-bold">Booking Confirmation</h4>
+                    <h6 className="fw-bold d-inline-block border border-1 border-dark p-2">
+                      Booking Confirmation
+                    </h6>
                   </div>
                   <div className="col-12">
                     <table className="table">
@@ -308,26 +318,29 @@ const BillingPage = () => {
                       {total}
                     </span>
                   </span>
-                  <span className="fs-6 p-2">
-                    <span className="p-2 border border-1 border-dark">
-                      <span className="fw-bold">Next Appointment:</span>
-                    </span>
-                  </span>
-
-                  <span className="fw-bold">
-                    Date:
-                    {" " +
-                      formState.inputs.date.value.substring(8, 10) +
-                      "-" +
-                      formState.inputs.date.value.substring(5, 7) +
-                      "-" +
-                      formState.inputs.date.value.substring(0, 4)}
-                  </span>
-
-                  <span className="fw-bold">
-                    Time:
-                    {formState.inputs.time.value}
-                  </span>
+                </div>
+                <div className="row m-0 ">
+                  <div className="col-lg-4">
+                    <h6 className="fw-bold d-inline-block p-2 border border-1 border-dark">
+                      Next Appointment:
+                    </h6>
+                    <div className="col ps-2 mb-1">
+                      <span className="fw-bold">Date:</span>
+                      <span className="ps-2">
+                        {formState.inputs.date.value.substring(8, 10) +
+                          "-" +
+                          formState.inputs.date.value.substring(5, 7) +
+                          "-" +
+                          formState.inputs.date.value.substring(0, 4)}
+                      </span>
+                    </div>
+                    <div className="col-12 ps-2">
+                      <span className="fw-bold">Time:</span>
+                      <span className="ps-2">
+                        {formState.inputs.time.value}
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <div className="row justify-content-center mb-3">
                   <div className="col-10 col-md-8 col-lg-6 mt-3 border-top border-1">

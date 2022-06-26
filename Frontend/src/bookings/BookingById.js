@@ -11,7 +11,6 @@ const BookingById = () => {
   const [bookingDate, setBookingDate] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-
   const getInputValue = (event) => {
     setbookingId(event.target.value);
     console.log(bookingId);
@@ -28,7 +27,7 @@ const BookingById = () => {
           `http://localhost:5000/api/booking/number/${bookingId}`
         );
         setLoadedBookings(responseData.booking);
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchByNumber();
   }, [sendRequest, bookingId]);
@@ -40,7 +39,7 @@ const BookingById = () => {
           `http://localhost:5000/api/booking/date/${bookingDate}`
         );
         setLoadedBookingsDate(responseData.booking);
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchByDate();
   }, [sendRequest, bookingDate]);
@@ -112,10 +111,13 @@ const BookingById = () => {
               </div>
             )}
             <div className="d-flex justify-content-center mt-3">
-              <h2>BOOKINGS BY DATE</h2>
+              <h2 className="p-3 col-4 rounded-2 shadow-sm border bg-white text-center roboto">
+                Booking By Date
+              </h2>
             </div>
-            {!isLoading && loadedBookingsDate && <BookingList items={loadedBookingsDate} />}
-
+            {!isLoading && loadedBookingsDate && (
+              <BookingList items={loadedBookingsDate} />
+            )}
           </div>
         ) : (
           <div>
@@ -127,9 +129,13 @@ const BookingById = () => {
               </div>
             )}
             <div className="d-flex justify-content-center mt-3">
-              <h2>BOOKINGS BY NUMBER</h2>
+              <h2 className="p-3 col-4 rounded-2 shadow-sm border bg-white text-center roboto">
+                Booking By Number
+              </h2>
             </div>
-            {!isLoading && loadedBookings && <BookingList items={loadedBookings} />}
+            {!isLoading && loadedBookings && (
+              <BookingList items={loadedBookings} />
+            )}
           </div>
         )}
       </div>
