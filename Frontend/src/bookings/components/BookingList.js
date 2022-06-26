@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "../../shared/components/UIElements/Card";
 import BookingItem from "./BookingItem";
 import "./BookingList.css";
 

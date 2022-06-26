@@ -9,7 +9,7 @@ const PatientList = (props) => {
     return (
       <div className="patient-list center">
         <Card>
-          <h2 className="text-center">No patients found.</h2>
+        <h4 className="p-3 w-100 col-4   text-center roboto">No Patients Found.</h4>
           <Button special={`/newPatient`}>
             <a  href="/#" className="btn btn-primary w-100">
               <i class="bi bi-pen-fill p-2"></i>Create New Patient
@@ -30,7 +30,8 @@ const PatientList = (props) => {
                 <th>Name</th>
                 <th>Phone Number</th>
                 <th>Date of Birth</th>
-                <th>Actions</th>
+                <th>Book</th>
+                <th>Delete</th>
               </tr>
             </thead>
             {props.items.map((Patient) => (

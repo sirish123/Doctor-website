@@ -1,15 +1,11 @@
 import React from "react";
-import Card from "../../shared/components/UIElements/Card";
 import PriceItem from "./PriceItem";
-import "./PriceList.css";
 
 const PriceList = (props) => {
   if (props.items.length === 0) {
     return (
-      <div className="Price-list">
-        <Card>
-          <h3>No Prices found</h3>
-        </Card>
+      <div className="text-justify">
+          <h3>No Treatments found</h3>
       </div>
     );
   }
@@ -23,6 +19,7 @@ const PriceList = (props) => {
             id={Price.id}
             price={Price.price}
             treatmentName={Price.treatmentName}
+            onDelete={props.onDeletePrice}
           />
         ))}
       </tbody>

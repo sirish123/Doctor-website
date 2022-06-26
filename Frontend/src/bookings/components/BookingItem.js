@@ -25,7 +25,7 @@ const BookingItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
@@ -35,7 +35,7 @@ const BookingItem = (props) => {
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
         header="Are you sure?"
-        footerClass="price-item__modal-actions"
+        footerClass="booking-item__modal-actions"
         footer={
           <React.Fragment>
             <Button inverse onClick={cancelDeleteHandler}>
@@ -116,7 +116,22 @@ const BookingItem = (props) => {
           <div>
             <div className="text-start p-3">
               <p className="diagonis text-muted text-center">
+                <h2>Amount Paid</h2>
                 {props.paymentamount}
+                <h2>Diagnosis</h2>
+                {props.diagnosis}
+                <div className="mt-3">
+                  <Button
+                    className="btn btn-danger align-middle"
+                    special={`/booking/${props.id}`}
+                  >
+                    <a href="/#" className="btn btn-primary me-2">
+                      
+                      <span className="fw-bold">Update Diagnosis</span>
+                    </a>
+                  </Button>
+                </div>
+
               </p>
             </div>
           </div>

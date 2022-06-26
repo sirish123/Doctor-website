@@ -5,32 +5,3 @@
   width: 100%;
   max-width: 40rem;
 }
-.patient-details {
-  list-style: none;
-  margin: 1rem auto;
-  padding: 0;
-  width: 100%;
-  max-width: 50rem;
-}
-
-input[type="text"] {
-  margin-right: 12px;
-  border-radius: 10px;
-  font: inherit;
-  padding: 0.15rem 0.25rem;
-}
-.other {
-  background-color: rgb(0, 106, 255); /* Green */
-  border: none;
-  border-radius: 1rem;
-  color: white;
-  padding: 9px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  cursor: pointer;
-}
-.other:hover {
-  background-color: rgba(0, 106, 255, 0.892);
-}

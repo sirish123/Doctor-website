@@ -2,34 +2,9 @@ import React from "react";
 // import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
 const MainNavbar = () => {
   return (
-    // <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-    //   <Navbar.Brand classNameName="p-2" href="#home">
-    //     Nature Wellness Center
-    //   </Navbar.Brand>
-    //   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-    //   <Navbar.Collapse id="responsive-navbar-nav">
-    //     <Nav classNameName="me-auto">
-    //       <NavDropdown title="Prices" id="collasible-nav-dropdown">
-    //         <NavDropdown.Item href="#action/3.1">
-    //           Update/Delete Treatments
-    //         </NavDropdown.Item>
-    //         <NavDropdown.Item href="#action/3.1">
-    //           Add Treatments
-    //         </NavDropdown.Item>
-    //       </NavDropdown>
-    //     </Nav>
-
-    //     <Nav>
-    //       <Nav.Link href="/">Active Appointments</Nav.Link>
-    //       <Nav.Link href="/book">Book Appointment</Nav.Link>
-    //       <Nav.Link href="/history">Search History</Nav.Link>
-    //     </Nav>
-    //   </Navbar.Collapse>
-    // </Navbar>
-
     <nav className="navbar navbar-expand-lg shadow">
       <div className="container w-100 pe-2">
-        <a className="navbar-brand" href="appointments.html">
+        <a className="navbar-brand" href="/#">
           Nature Wellness Center
         </a>
         <button
@@ -52,18 +27,24 @@ const MainNavbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" id="searchHistory" href="/history">
-                Search History
-              </a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link" id="bookings" href="/book">
                 Book
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" id="searchHistory" href="/history">
+                Search History
+              </a>
+            </li>
+
+            <li className="nav-item">
               <a className="nav-link" id="searchHistory" href="/getprice">
                 Treatments
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" id="searchHistory" href="/revenue">
+                Revenue
               </a>
             </li>
           </ul>

@@ -16,7 +16,6 @@ const BillingPage = () => {
   const [checkedState, setCheckedState] = useState([]);
 
   const [display, setdisplay] = useState([]);
-  const [listOfItems, setListOfItems] = useState("To Be Updated");
   const [bookingInfo, setBookingInfo] = useState([]);
   const [total, setTotal] = useState(0);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -81,7 +80,7 @@ const BillingPage = () => {
     };
     fetchTreatment();
   }, [sendRequest]);
-
+  //---------------------------------------------------------------------------------------------------------------------//
   useEffect(() => {
     const fetchBooking = async () => {
       try {
@@ -103,7 +102,7 @@ const BillingPage = () => {
         "PATCH",
         JSON.stringify({
           paymentamount: total,
-          diagnosis: "To be updated",
+          diagnosis: "To Be Updated",
         }),
         {
           "Content-Type": "application/json",
@@ -130,13 +129,13 @@ const BillingPage = () => {
     );
 
     const checkedItems = [];
+
     updatedCheckedState.map((item, index) => {
       if (item === true) {
         checkedItems.push(treatmentPrice[index]);
       }
     });
     setdisplay(checkedItems);
-    console.log(checkedItems);
     setTotal(totalPrice);
   };
 

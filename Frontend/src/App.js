@@ -6,11 +6,9 @@ import {
   Switch,
 } from "react-router-dom";
 
-import Patient from "./patients/Patient";
-import NewPatient from "./patients/NewPatient";
-import BookingForm from "./bookings/BookingForm";
-import GetBooking from "./bookings/GetBooking";
-import BookingById from "./bookings/BookingById";
+import Patient from "./patients/FetchPatient";
+import BookingForm from "./bookings/CreateBooking";
+import BookingById from "./bookings/FetchBookingById";
 import UpdateBooking from "./bookings/UpdateBooking";
 import Navbar from "./shared/components/Navigation/Navbar";
 import CreateTreatment from "./billing/prices/CreateTreatment";
@@ -20,6 +18,8 @@ import BillingPage from "./billing/prices/BillingPage";
 import Revenue from "./revenue/Revenue";
 
 import Footer from "./shared/components/Navigation/Footer";
+import CreatePatient from "./patients/CreatePatient";
+import FetchBooking from "./bookings/FetchBooking";
 const App = () => {
   return (
     <Router>
@@ -27,7 +27,7 @@ const App = () => {
       <main>
         <Switch>
           <Route path="/" exact>
-            <GetBooking />
+            <FetchBooking />
           </Route>
           <Route path="/revenue" exact>
             <Revenue />
@@ -39,7 +39,7 @@ const App = () => {
             <Patient />
           </Route>
           <Route path="/newpatient" exact>
-            <NewPatient />
+            <CreatePatient/>
           </Route>
           <Route path="/history" exact>
             <BookingById />

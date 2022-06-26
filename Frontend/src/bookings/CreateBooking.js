@@ -1,22 +1,26 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import { useParams, useHistory } from "react-router-dom";
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
+  VALIDATOR_TIME,
 } from "../shared/util/validators";
 import { useForm } from "../shared/hooks/form-hook";
 import { useHttpClient } from "../shared/hooks/http-hook";
 
-import "./PatientForm.css";
 
-const NewPatient = () => {
+
+const CreateBooking = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const name = useParams().kid;
+  const number = useParams().did;
   const [formState, inputHandler] = useForm(
     {
-      number: {
+      uniqueid: {
         value: "",
         isValid: false,
       },
@@ -24,15 +28,19 @@ const NewPatient = () => {
         value: "",
         isValid: false,
       },
-      address: {
+      paymentamount: {
+        value: 0,
+        isValid: true,
+      },
+      diagnosis: {
+        value: "To Be Updated",
+        isValid: true,
+      },
+      date: {
         value: "",
         isValid: false,
       },
-      gender: {
-        value: "",
-        isValid: false,
-      },
-      dateofbirth: {
+      time: {
         value: "",
         isValid: false,
       },
@@ -46,84 +54,83 @@ const NewPatient = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        "http://localhost:5000/api/patient",
+        "http://localhost:5000/api/booking",
         "POST",
         JSON.stringify({
-          number: formState.inputs.number.value,
+          uniqueid: formState.inputs.uniqueid.value,
           name: formState.inputs.name.value,
-          address: formState.inputs.address.value,
-          gender: formState.inputs.gender.value,
-          dateofbirth: formState.inputs.dateofbirth.value,
+          paymentamount: formState.inputs.paymentamount.value,
+          diagnosis: formState.inputs.diagnosis.value,
+          date: formState.inputs.date.value,
+          time: formState.inputs.time.value,
         }),
         { "Content-Type": "application/json" }
       );
       history.push("/");
     } catch (err) { }
   };
-
   return (
     <React.Fragment>
-      <ErrorModal error={error} onClear={clearError} />
-      <div class="row mt-3 p-2 justify-content-center text-center">
+      <div className="row mt-3 p-2 justify-content-center text-center">
+        <ErrorModal error={error} onClear={clearError} />
         {isLoading && (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
         )}
         {!isLoading && (
-          <form className="patient-form" onSubmit={placeSubmitHandler}>
+          <form className="booking-form" onSubmit={placeSubmitHandler}>
             <Input
-              id="number"
+              id="uniqueid"
               element="input"
               type="text"
-              label="Number"
+              label="Phone Number"
               validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(10)]}
-              errorText="Please enter a valid Number."
+              errorText="Please enter a valid Phone Number."
               onInput={inputHandler}
+              initialValue={number}
+              initialValid={true}
             />
             <Input
               id="name"
               element="input"
+              type="text"
               label="Name"
               validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a Name"
+              errorText="Please enter a Name."
               onInput={inputHandler}
+              initialValue={name}
+              initialValid={true}
             />
+
             <Input
-              id="address"
-              element="textarea"
-              label="Address"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a valid Address."
-              onInput={inputHandler}
-            />
-            <Input
-              id="gender"
-              element="input"
-              label="Gender"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter the Gender."
-              onInput={inputHandler}
-            />
-            <Input
-              id="dateofbirth"
+              id="date"
               element="input"
               type="date"
-              label="Date Of Birth"
+              label="Date"
               validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter the DateOfBirth."
+              errorText="Please enter a valid date."
               onInput={inputHandler}
             />
-            <Button type="submit" className="btn btn-primary" disabled={!formState.isValid}>
-              ADD PATIENT
+
+            <Input
+              id="time"
+              element="input"
+              label="Time"
+              type="time"
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_TIME()]}
+              errorText="Please enter a time in the field."
+              onInput={inputHandler}
+            />
+            <Button type="submit" disabled={!formState.isValid}>
+              ADD booking
             </Button>
           </form>)}
       </div>
-
     </React.Fragment>
   );
 };
 
-export default NewPatient;
+export default CreateBooking;

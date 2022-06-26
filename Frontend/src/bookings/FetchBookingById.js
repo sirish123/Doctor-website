@@ -3,7 +3,7 @@ import BookingList from "./components/BookingList";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../shared/hooks/http-hook";
 
-const BookingById = () => {
+const FetchBookingById = () => {
   const [loadedBookings, setLoadedBookings] = useState([]);
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
   const [customSwitch, setCustomSwitch] = useState(false);
@@ -11,6 +11,23 @@ const BookingById = () => {
   const [bookingDate, setBookingDate] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
+  const SortByDateAndTime= (props) => {
+         props.sort(function(a, b){
+            var keyA = new Date(a.date),
+                keyB = new Date(b.date);
+            if(keyA < keyB) return -1;
+            if(keyA > keyB) return 1;
+            return a.time.localeCompare(b.time);
+        });
+}
+const SortByTime= (props) => {
+
+
+   props.sort(function (a, b) {
+      return a.time.localeCompare(b.time);
+  });
+
+}
   const getInputValue = (event) => {
     setbookingId(event.target.value);
     console.log(bookingId);
@@ -26,6 +43,7 @@ const BookingById = () => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/booking/number/${bookingId}`
         );
+        SortByDateAndTime(responseData.booking)
         setLoadedBookings(responseData.booking);
       } catch (err) {}
     };
@@ -38,6 +56,7 @@ const BookingById = () => {
         const responseData = await sendRequest(
           `http://localhost:5000/api/booking/date/${bookingDate}`
         );
+        SortByTime(responseData.booking)
         setLoadedBookingsDate(responseData.booking);
       } catch (err) {}
     };
@@ -143,4 +162,4 @@ const BookingById = () => {
   );
 };
 
-export default BookingById;
+export default FetchBookingById;

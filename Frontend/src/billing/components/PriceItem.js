@@ -24,6 +24,7 @@ const PriceItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
+      
     } catch (err) {}
   };
   return (

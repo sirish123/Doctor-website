@@ -3,7 +3,7 @@ import BookingList from "./components/BookingList";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../shared/hooks/http-hook";
 
-function GetBooking() {
+function FetchBooking() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
   const [bookingDate, setBookingDate] = useState(
@@ -77,4 +77,4 @@ function GetBooking() {
   );
 }
 
-export default GetBooking;
+export default FetchBooking;

@@ -8,7 +8,6 @@ import Card from "../../shared/components/UIElements/Card";
 function FetchTreatment() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPrices, setloadedPrices] = useState([]);
-  console.log(new Date().toISOString);
   useEffect(() => {
     const fetchTreatment = async () => {
       try {
@@ -22,6 +21,11 @@ function FetchTreatment() {
     fetchTreatment();
   }, [sendRequest]);
 
+  const priceDeletedHandler = deletedpriceId => {
+    setloadedPrices(prevprices =>
+      prevprices.filter(price => price.id !== deletedpriceId)
+    );
+  };
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -47,13 +51,13 @@ function FetchTreatment() {
                 </tr>
               </thead>
 
-              {!isLoading && loadedPrices && <PriceList items={loadedPrices} />}
+              {!isLoading && loadedPrices && <PriceList items={loadedPrices} onDeletePrice={priceDeletedHandler} />}
             </table>
           </div>
           <div className="row justify-content-center mt-4">
             <div className="col-lg-6 col-md-8 col-12">
               <Card>
-                <h3 className="text-muted">Treatment not found?</h3>
+              <h3 className="text-center roboto">Treatment not found?</h3>
                 <Button type="button" special={`/billing/update`}>
                   <a href="/#" className="btn btn-primary">
                     <i className="bi bi-pen-fill p-2"></i>Create Treatment

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import PatientList from "./components/PatientList";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
-
 import { useHttpClient } from "../shared/hooks/http-hook";
 
-const Patient = () => {
+const FetchPatient = () => {
   const [loadedPatients, setLoadedPatients] = useState([]);
   const [patientId, setPatientId] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
   const getInputValue = (event) => {
     setPatientId(event.target.value);
     console.log(patientId);
   };
+  
   useEffect(() => {
     const fetchPatients = async () => {
       try {
@@ -75,4 +76,4 @@ const Patient = () => {
   );
 };
 
-export default Patient;
+export default FetchPatient;

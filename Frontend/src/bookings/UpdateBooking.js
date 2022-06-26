@@ -90,21 +90,10 @@ const UpdateBooking = () => {
         {!isLoading && loadedBooking && (
           <form className="booking-form" onSubmit={BookingUpdateSubmitHandler}>
             <Input
-              id="paymentamount"
-              element="input"
-              type="number"
-              label="Payment Amount"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a valid paymentamount."
-              onInput={inputHandler}
-              initialValue={loadedBooking.paymentamount}
-              initialValid={true}
-            />
-            <Input
               id="diagnosis"
               element="textarea"
               label="Diagnosis"
-              validators={[VALIDATOR_MINLENGTH(5)]}
+              validators={[VALIDATOR_REQUIRE(),VALIDATOR_MINLENGTH(5)]}
               errorText="Please enter a valid diagnosis (min. 5 characters)."
               onInput={inputHandler}
               initialValue={loadedBooking.diagnosis}

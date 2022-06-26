@@ -23,7 +23,7 @@ const PatientItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-    } catch (err) { }
+    } catch (err) {}
   };
   return (
     <React.Fragment>
@@ -50,27 +50,29 @@ const PatientItem = (props) => {
         </p>
       </Modal>
       {isLoading && (
-
         <div class="d-flex justify-content-center">
           <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
-
       )}
-      {!isLoading &&(<tr className="accordion-toggle align-middle record p-1">
-        <td>{props.name}</td>
-        <td>{props.number}</td>
-        <td>{props.dateofbirth}</td>
-        <td>
-          <Button special={`/booking/${props.name}/${props.number}`}>
-            <i className="bi bi-mouse p1"></i>
-          </Button>
-          <button onClick={showDeleteWarningHandler}>
-            <i class="bi bi-trash"></i>
-          </button>
-        </td>
-      </tr>)}
+      {!isLoading && (
+        <tr className="accordion-toggle align-middle record p-1">
+          <td>{props.name}</td>
+          <td>{props.number}</td>
+          <td>{props.dateofbirth}</td>
+          <td>
+            <Button special={`/booking/${props.name}/${props.number}`}>
+            <i class="bi bi-bookmark-check-fill text-info"></i>
+            </Button>
+          </td>
+          <td>
+            <button className="p-2 border-0" onClick={showDeleteWarningHandler}>
+              <i className="bi bi-trash text-danger"></i>
+            </button>
+          </td>
+        </tr>
+      )}
     </React.Fragment>
   );
 };
