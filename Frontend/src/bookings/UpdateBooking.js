@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 
 import Input from "../shared/components/FormElements/Input";
@@ -52,7 +52,7 @@ const UpdateBooking = () => {
           },
           true
         );
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchBooking();
   }, [sendRequest, BookingId, setFormData]);
@@ -72,18 +72,17 @@ const UpdateBooking = () => {
         }
       );
       history.push("/"); //+ auth.userId + '/Bookings'
-    } catch (err) { }
+    } catch (err) {}
   };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <div class="row mt-3 p-2 justify-content-center text-center">
-        
+      <div className="row mt-3 p-2 justify-content-center text-center">
         {isLoading && (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
         )}
@@ -93,7 +92,7 @@ const UpdateBooking = () => {
               id="diagnosis"
               element="textarea"
               label="Diagnosis"
-              validators={[VALIDATOR_REQUIRE(),VALIDATOR_MINLENGTH(5)]}
+              validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(5)]}
               errorText="Please enter a valid diagnosis (min. 5 characters)."
               onInput={inputHandler}
               initialValue={loadedBooking.diagnosis}

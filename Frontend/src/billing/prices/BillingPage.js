@@ -151,7 +151,7 @@ const BillingPage = () => {
                 <thead>
                   <tr className="align-middle">
                     <th scope="col">
-                      <i class="bi bi-clipboard-check text-success"></i>
+                      <i className="bi bi-clipboard-check text-success"></i>
                     </th>
                     <th scope="col">Treatment</th>
                     <th scope="col">Price</th>

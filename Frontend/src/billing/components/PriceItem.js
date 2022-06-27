@@ -24,7 +24,6 @@ const PriceItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-      
     } catch (err) {}
   };
   return (
@@ -52,9 +51,9 @@ const PriceItem = (props) => {
         </p>
       </Modal>
       {isLoading && (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
@@ -70,10 +69,10 @@ const PriceItem = (props) => {
               className="btn btn-danger align-middle"
               special={`/update/${props.id}`}
             >
-              <a href="/#" className="btn btn-primary me-2">
+              <span href="/#" className="btn btn-primary me-2">
                 <i className="bi bi-arrow-clockwise p-1 m-1"></i>
                 <span className="fw-bold">Update</span>
-              </a>
+              </span>
             </Button>
 
             <button

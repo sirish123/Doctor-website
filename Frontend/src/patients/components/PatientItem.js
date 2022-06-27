@@ -50,9 +50,9 @@ const PatientItem = (props) => {
         </p>
       </Modal>
       {isLoading && (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
@@ -63,7 +63,7 @@ const PatientItem = (props) => {
           <td>{props.dateofbirth}</td>
           <td>
             <Button special={`/booking/${props.name}/${props.number}`}>
-            <i class="bi bi-bookmark-check-fill text-info"></i>
+              <i className="bi bi-bookmark-check-fill text-info"></i>
             </Button>
           </td>
           <td>

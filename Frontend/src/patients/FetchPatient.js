@@ -12,7 +12,7 @@ const FetchPatient = () => {
     setPatientId(event.target.value);
     console.log(patientId);
   };
-  
+
   useEffect(() => {
     const fetchPatients = async () => {
       try {
@@ -20,14 +20,14 @@ const FetchPatient = () => {
           `http://localhost:5000/api/patient/${patientId}`
         );
         setLoadedPatients(responseData.patient);
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchPatients();
   }, [sendRequest, patientId]);
 
-  const patientDeletedHandler = deletedpatientId => {
-    setLoadedPatients(prevpatients =>
-      prevpatients.filter(patient => patient.id !== deletedpatientId)
+  const patientDeletedHandler = (deletedpatientId) => {
+    setLoadedPatients((prevpatients) =>
+      prevpatients.filter((patient) => patient.id !== deletedpatientId)
     );
   };
 
@@ -49,11 +49,7 @@ const FetchPatient = () => {
                 />
               </div>
               <div className="mb-3 w-100 text-end">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  
-                >
+                <button type="button" className="btn btn-primary">
                   <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>
@@ -63,15 +59,15 @@ const FetchPatient = () => {
       </div>
 
       {isLoading && (
-
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
-
       )}
-      {!isLoading && loadedPatients && <PatientList items={loadedPatients} onDelete = {patientDeletedHandler}/>}
+      {!isLoading && loadedPatients && (
+        <PatientList items={loadedPatients} onDelete={patientDeletedHandler} />
+      )}
     </React.Fragment>
   );
 };

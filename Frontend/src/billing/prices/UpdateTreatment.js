@@ -3,9 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
-import {
-  VALIDATOR_REQUIRE,
-} from "../../shared/util/validators";
+import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "../../bookings/BookingForm.css";
@@ -51,7 +49,7 @@ const UpdateTreatment = () => {
           },
           true
         );
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchPrices();
   }, [sendRequest, priceId, setFormData]);
@@ -71,17 +69,17 @@ const UpdateTreatment = () => {
         }
       );
       history.push("/");
-    } catch (err) { }
+    } catch (err) {}
   };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <div class="row mt-3 p-2 justify-content-center text-center">
+      <div className="row mt-3 p-2 justify-content-center text-center">
         {isLoading && (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
         )}

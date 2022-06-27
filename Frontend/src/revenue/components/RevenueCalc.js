@@ -15,7 +15,7 @@ const RevenueCalc = (props) => {
           </h5>
           <h5>
             <span className="fw-bold pe-3">Bookings:</span>
-            <i class="bi bi-journal-check pe-1"></i>
+            <i className="bi bi-journal-check pe-1"></i>
             {props.bookings}
           </h5>
         </div>

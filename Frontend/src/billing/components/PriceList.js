@@ -4,9 +4,14 @@ import PriceItem from "./PriceItem";
 const PriceList = (props) => {
   if (props.items.length === 0) {
     return (
-      <div className="text-justify">
-          <h3>No Treatments found</h3>
-      </div>
+      <tbody>
+        <tr className="text-justify">
+          <td colSpan={12}>
+            {" "}
+            <h3>No Treatments found</h3>
+          </td>
+        </tr>
+      </tbody>
     );
   }
 

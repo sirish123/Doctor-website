@@ -58,17 +58,17 @@ const CreatePatient = () => {
         { "Content-Type": "application/json" }
       );
       history.push("/");
-    } catch (err) { }
+    } catch (err) {}
   };
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <div class="row mt-3 p-2 justify-content-center">
+      <div className="row mt-3 p-2 justify-content-center">
         {isLoading && (
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
         )}
@@ -119,12 +119,16 @@ const CreatePatient = () => {
               errorText="Please enter the DateOfBirth."
               onInput={inputHandler}
             />
-            <Button type="submit" className="btn btn-primary" disabled={!formState.isValid}>
+            <Button
+              type="submit"
+              className="btn btn-primary"
+              disabled={!formState.isValid}
+            >
               ADD PATIENT
             </Button>
-          </form>)}
+          </form>
+        )}
       </div>
-
     </React.Fragment>
   );
 };

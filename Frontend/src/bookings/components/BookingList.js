@@ -15,9 +15,9 @@ const BookingList = (props) => {
 
   return (
     <>
-      <div class="row mt-3 p-2 justify-content-center text-center">
-        <div class="col-lg-10 p-0 shadow-sm recordHolder">
-          <table class="table table-condensed recordTable">
+      <div className="row mt-3 p-2 justify-content-center text-center">
+        <div className="col-lg-10 p-0 shadow-sm recordHolder">
+          <table className="table table-condensed recordTable">
             <thead>
               <tr>
                 <th>Status</th>
@@ -30,19 +30,21 @@ const BookingList = (props) => {
                 <th>Delete</th>
               </tr>
             </thead>
-            {props.items.map((Booking) => (
-              <BookingItem
-                key={Booking.id}
-                id={Booking.id}
-                time={Booking.time}
-                date={Booking.date}
-                paymentamount={Booking.paymentamount}
-                uniqueid={Booking.uniqueid}
-                diagnosis={Booking.diagnosis}
-                name={Booking.name}
-                onDelete={props.onDelete}
-              />
-            ))}
+            <tbody>
+              {props.items.map((Booking) => (
+                <BookingItem
+                  key={Booking.id}
+                  id={Booking.id}
+                  time={Booking.time}
+                  date={Booking.date}
+                  paymentamount={Booking.paymentamount}
+                  uniqueid={Booking.uniqueid}
+                  diagnosis={Booking.diagnosis}
+                  name={Booking.name}
+                  onDelete={props.onDelete}
+                />
+              ))}
+            </tbody>
           </table>
         </div>
       </div>

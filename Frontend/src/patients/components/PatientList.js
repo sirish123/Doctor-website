@@ -9,11 +9,13 @@ const PatientList = (props) => {
     return (
       <div className="patient-list center">
         <Card>
-        <h4 className="p-3 w-100 col-4   text-center roboto">No Patients Found.</h4>
+          <h4 className="p-3 w-100 col-4   text-center roboto">
+            No Patients Found.
+          </h4>
           <Button special={`/newPatient`}>
-            <a  href="/#" className="btn btn-primary w-100">
-              <i class="bi bi-pen-fill p-2"></i>Create New Patient
-            </a>
+            <span href="/#" className="btn btn-primary w-100">
+              <i className="bi bi-pen-fill p-2"></i>Create New Patient
+            </span>
           </Button>
         </Card>
       </div>
@@ -22,9 +24,9 @@ const PatientList = (props) => {
 
   return (
     <>
-      <div class="row mt-3 p-2 justify-content-center text-center">
-        <div class="col-lg-10 p-0 shadow-sm recordHolder">
-          <table class="table table-condensed recordTable">
+      <div className="row mt-3 p-2 justify-content-center text-center">
+        <div className="col-lg-10 p-0 shadow-sm recordHolder">
+          <table className="table table-condensed recordTable">
             <thead>
               <tr>
                 <th>Name</th>
@@ -42,7 +44,7 @@ const PatientList = (props) => {
                 address={Patient.address}
                 number={Patient.number}
                 dateofbirth={Patient.dateofbirth}
-                onDelete = {props.onDelete}
+                onDelete={props.onDelete}
               />
             ))}
           </table>

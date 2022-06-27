@@ -25,7 +25,7 @@ const BookingItem = (props) => {
         "DELETE"
       );
       props.onDelete(props.id);
-    } catch (err) { }
+    } catch (err) {}
   };
 
   return (
@@ -53,9 +53,9 @@ const BookingItem = (props) => {
         </p>
       </Modal>
       {isLoading && (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
@@ -63,9 +63,9 @@ const BookingItem = (props) => {
         <tr className="accordion-toggle align-middle record">
           <td>
             {props.paymentamount !== 0 ? (
-              <i class="bi bi-check-circle-fill text-success"></i>
+              <i className="bi bi-check-circle-fill text-success"></i>
             ) : (
-              <i class="bi bi-activity text-primary"></i>
+              <i className="bi bi-activity text-primary"></i>
             )}
           </td>
           <td>{props.name}</td>
@@ -81,9 +81,9 @@ const BookingItem = (props) => {
           <td>{props.time}</td>
           <td>
             <Button special={`/billing/invoice/${props.id}`}>
-              <a href="/#" className="btn m-1">
-                <i class="bi bi-receipt-cutoff text-info"></i>
-              </a>
+              <span className="btn m-1">
+                <i className="bi bi-receipt-cutoff text-info"></i>
+              </span>
             </Button>
           </td>
           <td>
@@ -111,27 +111,25 @@ const BookingItem = (props) => {
         <td
           className="accordion-body collapse p-2"
           id={"patient" + id++}
-          colspan="12"
+          colSpan="12"
         >
           <div>
             <div className="text-start p-3">
               <p className="diagonis text-muted text-center">
-                <h2>Amount Paid</h2>
+                <span className="fs-2">Amount Paid</span>
                 {props.paymentamount}
-                <h2>Diagnosis</h2>
+                <span className="fs-2">Diagnosis</span>
                 {props.diagnosis}
-                <div className="mt-3">
+                <span className="mt-3">
                   <Button
                     className="btn btn-danger align-middle"
                     special={`/booking/${props.id}`}
                   >
-                    <a href="/#" className="btn btn-primary me-2">
-                      
+                    <span className="btn btn-primary me-2">
                       <span className="fw-bold">Update Diagnosis</span>
-                    </a>
+                    </span>
                   </Button>
-                </div>
-
+                </span>
               </p>
             </div>
           </div>
