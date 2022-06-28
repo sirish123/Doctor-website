@@ -7,10 +7,10 @@ const FetchPatient = () => {
   const [loadedPatients, setLoadedPatients] = useState([]);
   const [patientId, setPatientId] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
+  const [switchstatenumber, setswitchstatenumber] = useState(false);
   const getInputValue = (event) => {
     setPatientId(event.target.value);
-    console.log(patientId);
+    //console.log(patientId);
   };
 
   useEffect(() => {
@@ -20,10 +20,10 @@ const FetchPatient = () => {
           `http://localhost:5000/api/patient/${patientId}`
         );
         setLoadedPatients(responseData.patient);
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchPatients();
-  }, [sendRequest, patientId]);
+  }, [sendRequest, switchstatenumber]);
 
   const patientDeletedHandler = (deletedpatientId) => {
     setLoadedPatients((prevpatients) =>
@@ -49,7 +49,7 @@ const FetchPatient = () => {
                 />
               </div>
               <div className="mb-3 w-100 text-end">
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" onClick={() => setswitchstatenumber((switchstatenumber) => !switchstatenumber)}>
                   <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>

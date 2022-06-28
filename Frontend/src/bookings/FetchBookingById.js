@@ -9,6 +9,8 @@ const FetchBookingById = () => {
   const [customSwitch, setCustomSwitch] = useState(false);
   const [bookingId, setbookingId] = useState();
   const [bookingDate, setBookingDate] = useState();
+  const [switchstatenumber,setswitchstatenumber]  = useState(false);
+  const [switchstatedate,setswitchstatedate]  = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const SortByDateAndTime= (props) => {
@@ -28,14 +30,31 @@ const SortByTime= (props) => {
   });
 
 }
+ const bookingDeletedHandlerNumber = (deletedbookingId) => {
+  setLoadedBookings((prevbookings) =>
+    prevbookings.filter((booking) => booking.id !== deletedbookingId)
+  );
+};
+const bookingDeletedHandlerDate = (deletedbookingId) => {
+  setLoadedBookingsDate((prevbookings) =>
+    prevbookings.filter((booking) => booking.id !== deletedbookingId)
+  );
+};
   const getInputValue = (event) => {
     setbookingId(event.target.value);
-    console.log(bookingId);
+   // console.log(bookingId);
   };
   const getDateValue = (event) => {
     setBookingDate(event.target.value);
-    console.log(bookingDate);
+    //console.log(bookingDate);
   };
+  const changenumber = () => {
+   setswitchstatenumber((switchstatenumber) => !switchstatenumber);
+  };
+  const changeDate = () => {
+    setswitchstatedate((switchstatedate) => !switchstatedate);
+   };
+ 
 
   useEffect(() => {
     const fetchByNumber = async () => {
@@ -48,7 +67,7 @@ const SortByTime= (props) => {
       } catch (err) {}
     };
     fetchByNumber();
-  }, [sendRequest, bookingId]);
+  }, [sendRequest, switchstatenumber]);
 
   useEffect(() => {
     const fetchByDate = async () => {
@@ -61,7 +80,7 @@ const SortByTime= (props) => {
       } catch (err) {}
     };
     fetchByDate();
-  }, [sendRequest, bookingDate]);
+  }, [sendRequest, switchstatedate]);
 
   return (
     <React.Fragment>
@@ -86,6 +105,7 @@ const SortByTime= (props) => {
                   className="btn btn-primary"
                   onClick={() => {
                     setCustomSwitch(true);
+                    changeDate();
                   }}
                 >
                   <i className="bi bi-search p-2"></i>Search
@@ -112,6 +132,7 @@ const SortByTime= (props) => {
                   className="btn btn-primary"
                   onClick={() => {
                     setCustomSwitch(false);
+                    changenumber()
                   }}
                 >
                   <i className="bi bi-search p-2"></i>Search
@@ -135,7 +156,7 @@ const SortByTime= (props) => {
               </h2>
             </div>
             {!isLoading && loadedBookingsDate && (
-              <BookingList items={loadedBookingsDate} />
+              <BookingList items={loadedBookingsDate}  onDelete={bookingDeletedHandlerDate} />
             )}
           </div>
         ) : (
@@ -153,7 +174,7 @@ const SortByTime= (props) => {
               </h2>
             </div>
             {!isLoading && loadedBookings && (
-              <BookingList items={loadedBookings} />
+              <BookingList items={loadedBookings}  onDelete={bookingDeletedHandlerNumber}/>
             )}
           </div>
         )}

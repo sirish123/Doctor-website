@@ -1,10 +1,9 @@
-.footer{
-   
-    color:white;
-    background-color: rgb(3, 32, 58);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin-top: 10rem;
-   
-  }
+.footer {
+  color: white;
+  background-color: rgb(3, 32, 58);
+  width: 100%;
+  margin-top: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

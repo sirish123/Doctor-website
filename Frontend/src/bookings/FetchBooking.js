@@ -6,6 +6,7 @@ import { useHttpClient } from "../shared/hooks/http-hook";
 function FetchBooking() {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedBookingsDate, setLoadedBookingsDate] = useState([]);
+  const [switchstatedate,setswitchstatedate]  = useState(false);
   const [bookingDate, setBookingDate] = useState(
     new Date().toISOString().slice(0, 10)
   );
@@ -25,7 +26,7 @@ function FetchBooking() {
       } catch (err) {}
     };
     fetchByDate();
-  }, [sendRequest, bookingDate]);
+  }, [sendRequest, switchstatedate]);
 
   const bookingDeletedHandler = (deletedbookingId) => {
     setLoadedBookingsDate((prevbookings) =>
@@ -51,7 +52,7 @@ function FetchBooking() {
                 />
               </div>
               <div className="mb-3 w-100 text-end">
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" onClick ={()=>setswitchstatedate((switchstatedate)=> !switchstatedate)}>
                   <i className="bi bi-search p-2"></i>Search
                 </button>
               </div>

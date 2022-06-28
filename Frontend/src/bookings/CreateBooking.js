@@ -125,7 +125,7 @@ const CreateBooking = () => {
               onInput={inputHandler}
             />
             <Button type="submit" disabled={!formState.isValid}>
-              ADD booking
+              Add Booking
             </Button>
           </form>)}
       </div>

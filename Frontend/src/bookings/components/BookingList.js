@@ -17,7 +17,7 @@ const BookingList = (props) => {
     <>
       <div className="row mt-3 p-2 justify-content-center text-center">
         <div className="col-lg-10 p-0 shadow-sm recordHolder">
-          <table className="table table-condensed recordTable">
+          <table className="table table-condensed recordTable table-borderless position-relative">
             <thead>
               <tr>
                 <th>Status</th>

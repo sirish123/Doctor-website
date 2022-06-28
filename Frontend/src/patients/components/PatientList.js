@@ -26,7 +26,7 @@ const PatientList = (props) => {
     <>
       <div className="row mt-3 p-2 justify-content-center text-center">
         <div className="col-lg-10 p-0 shadow-sm recordHolder">
-          <table className="table table-condensed recordTable">
+        <table className="table table-condensed recordTable table-borderless position-relative">
             <thead>
               <tr>
                 <th>Name</th>
@@ -36,6 +36,7 @@ const PatientList = (props) => {
                 <th>Delete</th>
               </tr>
             </thead>
+            <tbody>
             {props.items.map((Patient) => (
               <PatientItem
                 key={Patient.id}
@@ -47,6 +48,7 @@ const PatientList = (props) => {
                 onDelete={props.onDelete}
               />
             ))}
+            </tbody>
           </table>
         </div>
       </div>

@@ -60,16 +60,27 @@ const PatientItem = (props) => {
         <tr className="accordion-toggle align-middle record p-1">
           <td>{props.name}</td>
           <td>{props.number}</td>
-          <td>{props.dateofbirth}</td>
+          <td> {props.dateofbirth.substring(8, 10) +
+              "-" +
+              props.dateofbirth.substring(5, 7) +
+              "-" +
+              props.dateofbirth.substring(0, 4)}</td>
           <td>
             <Button special={`/booking/${props.name}/${props.number}`}>
               <i className="bi bi-bookmark-check-fill text-info"></i>
             </Button>
           </td>
           <td>
-            <button className="p-2 border-0" onClick={showDeleteWarningHandler}>
+            <a
+              type="button"
+              className="btn m-1"
+              onClick={showDeleteWarningHandler}
+            >
               <i className="bi bi-trash text-danger"></i>
-            </button>
+            </a>
+            {/* <button className="p-2 border-0" onClick={showDeleteWarningHandler}>
+              <i className="bi bi-trash text-danger"></i>
+            </button> */}
           </td>
         </tr>
       )}

@@ -5,8 +5,8 @@ const Footer = () => (
     <div className="footer p-3">
       <div className="text-center">
         <div>
-          <h3>Nature Wellness Center</h3>
-          <div className="fs-4">
+          <h4>Nature Wellness Center</h4>
+          <div className="fs-5">
             <a href="/#" className="p-2">
               <i className="bi bi-linkedin"></i>
             </a>

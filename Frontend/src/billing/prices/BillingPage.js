@@ -130,11 +130,10 @@ const BillingPage = () => {
 
     const checkedItems = [];
 
-    updatedCheckedState.map((item, index) => {
-      if (item === true) {
-        checkedItems.push(treatmentPrice[index]);
-      }
-    });
+    updatedCheckedState.map((item, index) => (
+      item === true ? checkedItems.push(treatmentPrice[index]):null
+    )
+    );
     setdisplay(checkedItems);
     setTotal(totalPrice);
   };
@@ -235,7 +234,7 @@ const BillingPage = () => {
                 />
                 <div className="col-12 text-end">
                   <Button type="submit" disabled={!formState.isValid}>
-                    ADD booking
+                    Add Booking
                   </Button>
                 </div>
               </form>
