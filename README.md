@@ -75,4 +75,4 @@ Frontend/Backend
 * <a href = "https://github.com/sirish123" >Sirish Sekhar </a>
 
 UI/UX Design
-* <a href = "https://github.com/sirish123" >Siddhartha Gandu</a>
+* <a href = "https://github.com/S1ddh4rthaG" >Siddhartha Gandu</a>
