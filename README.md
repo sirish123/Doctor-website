@@ -65,6 +65,9 @@ below is the demo version of the application with all CRUD operations Implemente
 cd backend
 
 npm install
+
+CAUTION
+MongoDb credentials must be replaced with your database credentials as the one given in code is changed and is no longer useful
 ```
 
 #### 2. Run the server
@@ -81,6 +84,7 @@ npm start
 cd Frontend
 
 npm install
+
 ```
 
 #### 2. Run the server
