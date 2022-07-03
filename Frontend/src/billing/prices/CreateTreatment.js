@@ -60,7 +60,7 @@ const CreateTreatment = () => {
             </div>
           </div>
         )}
-       {!isLoading && (<form className="booking-form" onSubmit={placeSubmitHandler}>
+       {!isLoading && (<form className="booking-form mt-5" onSubmit={placeSubmitHandler}>
         <Input
           id="treatmentName"
           element="input"

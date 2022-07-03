@@ -5,7 +5,7 @@ const MainNavbar = () => {
     <nav className="navbar navbar-expand-lg shadow">
       <div className="container w-100 pe-2">
         <a className="navbar-brand" href="/#">
-          Nature Wellness Center
+          Demo Application
         </a>
         <button
           className="navbar-toggler ms-auto"
