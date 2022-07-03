@@ -19,6 +19,20 @@ below is the demo version of the application with all CRUD operations Implemente
   Frontend -- React,Bootstrap
   Deployment -- Heroku
 ```
+ Main Page
+ 
+![Main Page](./images/p1.png)
+ 
+ Billing
+![Billing](./images/p5.png)
+
+![Main Page](./images/p2.png)
+
+![Main Page](./images/p6.png)
+
+![Main Page](./images/p3.png)
+
+![Main Page](./images/p4.png)
    
 ## Installation Procedure:
 
@@ -75,4 +89,4 @@ Frontend/Backend
 * <a href = "https://github.com/sirish123" >Sirish Sekhar </a>
 
 UI/UX Design
-* <a href = "https://github.com/sirish123" >Siddhartha Gandu</a>
+* <a href = "https://github.com/S1ddh4rthaG" >Siddhartha Gandu</a>
