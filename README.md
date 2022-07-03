@@ -24,15 +24,26 @@ below is the demo version of the application with all CRUD operations Implemente
 ![Main Page](./images/p1.png)
  
  Billing
+ 
 ![Billing](./images/p5.png)
 
+ Search
+ 
 ![Main Page](./images/p2.png)
 
-![Main Page](./images/p6.png)
-
+ Revenue
+ 
 ![Main Page](./images/p3.png)
 
+ Treatment
+ 
 ![Main Page](./images/p4.png)
+
+ Booking Form
+ 
+![Main Page](./images/p6.png)
+
+
    
 ## Installation Procedure:
 
