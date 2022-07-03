@@ -1,23 +1,29 @@
 ## **Fullstack-Application/Booking-System(MERN)**
 
+A Fullstack Application built for a client using MERN and is intended to serve the purpose of a employee oriented online booking system for easy tracking of data,
+below is the demo version of the application with all CRUD operations Implemented
 
-
+---
 
 ### Features:
 
-- Custom Billing system catered to clients needs
-- Historical data review and all patients information and diagnosis
-- Revenue generated and number of bookings
-- Easy to Use UI with all CRUD operations
+- Custom Billing System Catered To Clients Needs
+- Historical Data Review And All Patients Info And Diagnosis
+- Revenue Generated And Number Of Appointments Report
+- Easy To Use Modern UI With All CRUD Operations
 ---
-
+## Technology Stack used:
+   Frontend->
+   
+   
+   
 ## Installation Procedure:
 
 #### Download the repository. Structure of the repository is shown below:
 
 ```
    FullStack-Appointment-Booking Website
-   |-- Backend
+   |-- Backend 
    |-- Frontend
 ```
 
@@ -55,10 +61,12 @@ npm install
 npm start
 ```
 
-Interface will be live at http://localhost:3000/
+Frontend will be live at http://localhost:3000/
+Backend will be live at http://localhost:5000/
 
 
 ## Team Members:
-
+Frontend/Backend
 * <a href = "https://github.com/sirish123" >Sirish Sekhar </a>
-
+UI/UX Design
+* <a href = "https://github.com/sirish123" >Siddhartha Gandu</a>
