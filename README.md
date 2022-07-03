@@ -13,16 +13,19 @@ below is the demo version of the application with all CRUD operations Implemente
 - Easy To Use Modern UI With All CRUD Operations
 ---
 ## Technology Stack used:
-   Frontend->
-   
-   
+  
+```
+  Backend -- Node,Express,MongoDB
+  Frontend -- React,Bootstrap
+  Deployment -- Heroku
+```
    
 ## Installation Procedure:
 
 #### Download the repository. Structure of the repository is shown below:
 
 ```
-   FullStack-Appointment-Booking Website
+   FullStack/Appointment-Booking-Website
    |-- Backend 
    |-- Frontend
 ```
@@ -62,11 +65,14 @@ npm start
 ```
 
 Frontend will be live at http://localhost:3000/
+
 Backend will be live at http://localhost:5000/
 
 
 ## Team Members:
+
 Frontend/Backend
 * <a href = "https://github.com/sirish123" >Sirish Sekhar </a>
+
 UI/UX Design
 * <a href = "https://github.com/sirish123" >Siddhartha Gandu</a>
