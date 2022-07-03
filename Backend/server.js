@@ -40,7 +40,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://sirish:sirish123@cluster0.fzqyl6v.mongodb.net/DoctorWebApp?retryWrites=true&w=majority"
+    "mongodb+srv://your credentials"
   )
   .then(() => {
     app.listen(5000);
