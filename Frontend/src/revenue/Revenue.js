@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import { useHttpClient } from "../shared/hooks/http-hook";
 import RevenueCalc from "./components/RevenueCalc";
+import RevenueList from "./components/RevenueList";
 const Revenue = () => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -10,24 +11,18 @@ const Revenue = () => {
   const [totalRevenue, setTotalReveneue] = useState(0);
 
   const calculateTotal = (props) => {
+    props.sort(function (a, b) {
+      var keyA = new Date(a.date),
+        keyB = new Date(b.date);
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return a.time.localeCompare(b.time);
+    });
     const sum = props.reduce((accumulator, object) => {
       return accumulator + object.paymentamount;
     }, 0);
 
     setTotalReveneue(sum);
-
-    //    const arr = props.sort(function(a, b){
-    //         var keyA = new Date(a.date),
-    //             keyB = new Date(b.date);
-    //         // Compare the 2 dates
-    //         if(keyA < keyB) return -1;
-    //         if(keyA > keyB) return 1;
-    //         return 0;
-    //     });
-    // const arr = props.sort(function (a, b) {
-    //     return a.time.localeCompare(b.time);
-    // });
-    //     console.log(arr);
   };
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -40,7 +35,7 @@ const Revenue = () => {
 
         calculateTotal(responseData.booking);
         setLoadedBookingsDate(responseData.booking);
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchByDate();
   }, [sendRequest, cswitch]);
@@ -58,6 +53,7 @@ const Revenue = () => {
       <div className="container-fluid mt-5">
         <div className="row justify-content-center">
           <div className="col-lg-4 border border-2 rounded shadow-sm searchBox">
+            <h1 className="mt-3">Search By Date</h1>
             <input
               type="date"
               className="form-control"
@@ -85,8 +81,7 @@ const Revenue = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div>
+
         {isLoading && (
           <div className="d-flex justify-content-center">
             <div className="spinner-border" role="status">
@@ -95,10 +90,13 @@ const Revenue = () => {
           </div>
         )}
         {!isLoading && loadedBookingsDate && (
-          <RevenueCalc
-            totrevenue={totalRevenue}
-            bookings={loadedBookingsDate.length}
-          />
+          <div>
+            <RevenueCalc
+              totrevenue={totalRevenue}
+              bookings={loadedBookingsDate.length}
+            />
+            <RevenueList items={loadedBookingsDate} />
+          </div>
         )}
       </div>
     </React.Fragment>
