@@ -33,7 +33,7 @@ below is the demo version of the application with all CRUD operations Implemente
 
  Revenue
  
-![Main Page](./images/p3.png)
+![Main Page](./images/p7.png)
 
  Treatment
  
