@@ -11,10 +11,11 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_TIME,
 } from "../../shared/util/validators";
+
 const BillingPage = () => {
   const [treatmentPrice, settreatmentPrice] = useState([]);
   const [checkedState, setCheckedState] = useState([]);
-
+  const [address, setAddress] = useState(true);
   const [display, setdisplay] = useState([]);
   const [bookingInfo, setBookingInfo] = useState([]);
   const [total, setTotal] = useState(0);
@@ -22,7 +23,16 @@ const BillingPage = () => {
   const BookingId = useParams().sid;
   console.log(BookingId);
   const componentRef = useRef();
-
+  const changeaddress = (inp) =>{
+    if(inp===1){
+      setAddress(true);
+    }
+    else
+    {
+      setAddress(false);
+    }
+  }
+ 
   const [formState, inputHandler] = useForm(
     {
       paymentamount: {
@@ -60,7 +70,7 @@ const BillingPage = () => {
         }),
         { "Content-Type": "application/json" }
       );
-    } catch (err) {}
+    } catch (err) { }
   };
   //----------------------------------------------------------------------------------------------------------------------//
   const handlePrint = useReactToPrint({
@@ -76,7 +86,7 @@ const BillingPage = () => {
         console.log(responseData.price);
         settreatmentPrice(responseData.price);
         setCheckedState(new Array(responseData.price.length).fill(false));
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchTreatment();
   }, [sendRequest]);
@@ -89,7 +99,7 @@ const BillingPage = () => {
         );
         console.log(responseData.booking);
         setBookingInfo(responseData.booking);
-      } catch (err) {}
+      } catch (err) { }
     };
     fetchBooking();
   }, [sendRequest]);
@@ -108,7 +118,7 @@ const BillingPage = () => {
           "Content-Type": "application/json",
         }
       );
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const handleOnChange = (position) => {
@@ -131,7 +141,7 @@ const BillingPage = () => {
     const checkedItems = [];
 
     updatedCheckedState.map((item, index) => (
-      item === true ? checkedItems.push(treatmentPrice[index]):null
+      item === true ? checkedItems.push(treatmentPrice[index]) : null
     )
     );
     setdisplay(checkedItems);
@@ -239,12 +249,30 @@ const BillingPage = () => {
                 </div>
               </form>
             </div>
+            <div className="row mt-5">
+              <div className="form-check">
+                <input onChange={() => {changeaddress(1)}} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                  <label className="form-check-label" for="flexRadioDefault1">
+                    RT Nagar Branch
+                  </label>
+              </div>
+              <div className="form-check">
+                <input onChange={() => {changeaddress(2)}} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
+                  <label className="form-check-label" for="flexRadioDefault2">
+                    Shivaji Nagar Branch
+                  </label>
+              </div>
+            </div>
           </div>
 
           <div ref={componentRef} className="col-lg-8">
             <div className="row p-3 justify-content-center">
               <div className="col-lg-10 p-4 bg-white shadow-sm rounded-2">
+
                 <div className="row p-2 text-center">
+                  <div className="row p-2">
+                    <img src={require('./nws.png')} alt="fireSpot" />
+                  </div>
                   <h2 className="fw-bold">INVOICE</h2>
                 </div>
                 <div className="row justify-content-end">
@@ -355,7 +383,7 @@ const BillingPage = () => {
                       <div className="col-12">
                         <span>
                           <span className="fw-bold pe-1">Address:</span>
-                          Somewhere in Nowhere far far away.
+                          {address ===true? "hi": "hello"}
                         </span>
                       </div>
                     </div>
