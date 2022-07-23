@@ -23,16 +23,14 @@ const BillingPage = () => {
   const BookingId = useParams().sid;
   console.log(BookingId);
   const componentRef = useRef();
-  const changeaddress = (inp) =>{
-    if(inp===1){
+  const changeaddress = (inp) => {
+    if (inp === 1) {
       setAddress(true);
-    }
-    else
-    {
+    } else {
       setAddress(false);
     }
-  }
- 
+  };
+
   const [formState, inputHandler] = useForm(
     {
       paymentamount: {
@@ -70,7 +68,7 @@ const BillingPage = () => {
         }),
         { "Content-Type": "application/json" }
       );
-    } catch (err) { }
+    } catch (err) {}
   };
   //----------------------------------------------------------------------------------------------------------------------//
   const handlePrint = useReactToPrint({
@@ -86,7 +84,7 @@ const BillingPage = () => {
         console.log(responseData.price);
         settreatmentPrice(responseData.price);
         setCheckedState(new Array(responseData.price.length).fill(false));
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchTreatment();
   }, [sendRequest]);
@@ -99,7 +97,7 @@ const BillingPage = () => {
         );
         console.log(responseData.booking);
         setBookingInfo(responseData.booking);
-      } catch (err) { }
+      } catch (err) {}
     };
     fetchBooking();
   }, [sendRequest]);
@@ -118,7 +116,7 @@ const BillingPage = () => {
           "Content-Type": "application/json",
         }
       );
-    } catch (err) { }
+    } catch (err) {}
   };
 
   const handleOnChange = (position) => {
@@ -140,9 +138,8 @@ const BillingPage = () => {
 
     const checkedItems = [];
 
-    updatedCheckedState.map((item, index) => (
+    updatedCheckedState.map((item, index) =>
       item === true ? checkedItems.push(treatmentPrice[index]) : null
-    )
     );
     setdisplay(checkedItems);
     setTotal(totalPrice);
@@ -154,8 +151,8 @@ const BillingPage = () => {
       <div className="container-fluid mt-5">
         <div className="row g-3 ms-2 me-2">
           <div className="col-lg-4 p-3 my-auto">
-            <h4 className="fw-bold text-center mb-2">Treatment & Price</h4>
             <div className="row p-3 mb-4 shadow-sm rounded bg-white">
+              <h4 className="fw-bold text-center mb-2">Treatment & Price</h4>
               <table className="table">
                 <thead>
                   <tr className="align-middle">
@@ -223,6 +220,7 @@ const BillingPage = () => {
                 className="booking-form w-100"
                 onSubmit={placeSubmitHandler}
               >
+                <h4 className="fw-bold text-center">Next Appointment</h4>
                 <Input
                   id="date"
                   element="input"
@@ -249,18 +247,35 @@ const BillingPage = () => {
                 </div>
               </form>
             </div>
-            <div className="row mt-5">
+            <div className="row mt-5 bg-white shadow-sm p-3 rounded-2">
+              <h3 className="text-center fw-bold">Select Branch</h3>
               <div className="form-check">
-                <input onChange={() => {changeaddress(1)}} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                  <label className="form-check-label" for="flexRadioDefault1">
-                    RT Nagar Branch
-                  </label>
+                <input
+                  onChange={() => {
+                    changeaddress(1);
+                  }}
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                />
+                <label className="form-check-label" for="flexRadioDefault1">
+                  RT Nagar Branch
+                </label>
               </div>
               <div className="form-check">
-                <input onChange={() => {changeaddress(2)}} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  />
-                  <label className="form-check-label" for="flexRadioDefault2">
-                    Shivaji Nagar Branch
-                  </label>
+                <input
+                  onChange={() => {
+                    changeaddress(2);
+                  }}
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault2"
+                />
+                <label className="form-check-label" for="flexRadioDefault2">
+                  Shivaji Nagar Branch
+                </label>
               </div>
             </div>
           </div>
@@ -268,12 +283,30 @@ const BillingPage = () => {
           <div ref={componentRef} className="col-lg-8">
             <div className="row p-3 justify-content-center">
               <div className="col-lg-10 p-4 bg-white shadow-sm rounded-2">
-
-                <div className="row p-2 text-center">
-                  <div className="row p-2">
-                    <img src={require('./nws.png')} alt="fireSpot" />
+                <div className="row p-2 text-center"></div>
+                <h2 className="fw-bold text-center p-2">INVOICE</h2>
+                <div className="d-flex flex-row p-2 justify-content-end">
+                  <div className="col flex-fill my-auto">
+                    <div>
+                      <h4 className="fw-bold font-primary">
+                        Nature Wellness Center
+                      </h4>
+                      <span className="w-100">
+                        <a
+                          className="text-muted"
+                          href="http://www.natureswellnesscentre.in/"
+                        >
+                          http://www.natureswellnesscentre.in/
+                        </a>
+                      </span>
+                    </div>
                   </div>
-                  <h2 className="fw-bold">INVOICE</h2>
+                  <img
+                    className="img"
+                    style={{ height: "120px", width: "130px" }}
+                    src={require("./nws.png")}
+                    alt="fireSpot"
+                  />
                 </div>
                 <div className="row justify-content-end">
                   <div className="col-8">
@@ -377,13 +410,17 @@ const BillingPage = () => {
                       <div className="col-12">
                         <span>
                           <span className="fw-bold pe-1">Contact Info:</span>
-                          7894561238
+                          {address === true
+                            ? "9019848494 / 8880901440"
+                            : "9110234932 / 9972952184"}
                         </span>
                       </div>
                       <div className="col-12">
                         <span>
                           <span className="fw-bold pe-1">Address:</span>
-                          {address ===true? "hi": "hello"}
+                          {address === true
+                            ? "25/3, 1st Main, Athmananda Colony, near Syndicate Bank, Sultanpalya, RT Nagar, Bengaluru, Karnataka 560032"
+                            : "#62, Opp. Modi Masjid Chick Bazaar Road, Off. Queens Road, Tasker Town, Shivajinagar Bengaluru, Karnataka 560051"}
                         </span>
                       </div>
                     </div>
