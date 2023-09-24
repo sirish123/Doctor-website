@@ -1,4 +1,4 @@
-## **Fullstack-Application/Booking-System(MERN)**
+## **MedSched---Medical-Appointment**
 
 A Fullstack Application built for a client using MERN and is intended to serve the purpose of a employee oriented online booking system for easy tracking of data,
 below is the demo version of the application with all CRUD operations Implemented
